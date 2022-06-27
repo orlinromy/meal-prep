@@ -9,9 +9,9 @@ const Home = () => {
         Having a hell wekk ahead? Don't worry, we'll help you to decide what to
         eat (hopefully)
       </p>
-      <button>
-        <NavLink to="/create">Start Prepping</NavLink>
-      </button>
+      <NavLink to="/create">
+        <button>Start Prepping</button>
+      </NavLink>
     </div>
   );
 };
