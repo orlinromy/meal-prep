@@ -9,6 +9,10 @@ const diet = [
     image: salads,
   },
   {
+    type: "High-Fiber",
+    image: salads,
+  },
+  {
     type: "High-Protein",
     image: salads,
   },
@@ -26,10 +30,15 @@ const diet = [
   },
 ];
 
-const meals = [
+const meal = [
   { type: "3", image: salads },
   { type: "5", image: salads },
 ];
+
+const mealTypes = {
+  3: ["breakfast", "lunch"],
+  5: ["breakfast", "lunch", "snack"],
+};
 
 const allergy = [
   { type: "none", image: salads },
@@ -74,4 +83,10 @@ const health = [
   { type: "vegetarian", image: salads },
 ];
 
-export { diet, meals, allergy, health };
+const incaseneeded = [
+  "_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAUGS2BABWUUZ1xzBgADUXlSUGtFZFV7BwAPEjZGATdAagEiBQFVFWVHCzBCZgd1DAAVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D",
+  "_cont=CHcVQBtNNQphDmgVQntAEX4BY0t3AgIDSmxJCmsaalx6DQoORHdcETESNgQmBAIGR2ARAmcWMFRyUVIGSzMRAWNBY1F3BgUAUQhcETRRPAhhDgUHX3cDUjRGEAQvW0FeFiYiUjxENkd5T05K",
+  "_cont=CHcVQBtNNQphDmgVQntAEX4BY0t3AgIDSmxJCmsaalx6DQoORHdcETESNgQmBAIGR2ARAmcWMFRyUVIGSzMRAWNBY1F3BgUAUQhcETRRPAhhDgcHX3cDUjRGEAQvW0FeFiYiUjxENkd5T05K",
+];
+
+export { diet, meal, allergy, health, mealTypes };

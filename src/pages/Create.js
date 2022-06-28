@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Selection from "../components/SelectionCard/Selection";
-import { diet, meals, allergy, health } from "../data/mealOptions";
+import { diet, meal, allergy, health } from "../data/mealOptions";
 
 const Create = (props) => {
   const [days, setDays] = useState(1);
@@ -19,10 +19,10 @@ const Create = (props) => {
     e.preventDefault();
     props.setData({
       days: days,
-      meal: selectedMeal,
-      diet: selectedDiet,
-      allergy: selectedAllergy,
-      health: selectedHealth,
+      meal: [...selectedMeal.map((idx) => parseInt(meal[idx].type))],
+      diet: [...selectedDiet.map((idx) => diet[idx].type.toLowerCase())],
+      allergy: [...selectedAllergy.map((idx) => allergy[idx].type)],
+      health: [...selectedHealth.map((idx) => health[idx].type)],
     });
     navigate("/planner");
   }
@@ -44,7 +44,7 @@ const Create = (props) => {
       <br />
       <Selection
         title="Meals per Day"
-        types={meals}
+        types={meal}
         multiple={false}
         id="meals"
         setData={setSelectedMeal}
