@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { mealTypes } from "../data/mealOptions";
 import { breakfast, lunchDinner, snack } from "../data/tempData";
+import MealPlan from "../components/MealPlan/MealPlan";
 
 const MealPlanner = (props) => {
   const [breakfastMenu, setBreakfastMenu] = useState([]);
@@ -9,13 +10,13 @@ const MealPlanner = (props) => {
   const [nextLunchAPI, setNextLunchAPI] = useState({ none: "" });
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
   const [isLoading, setIsLoading] = useState([true, true]);
-  const [selectedMeal, setSelectedMeal] = useState({
-    breakfast: [],
-    lunch: [],
-    dinner: [],
-    snack: [],
-    teatime: [],
-  });
+  //   const [selectedMeal, setSelectedMeal] = useState({
+  //     breakfast: [],
+  //     lunch: [],
+  //     dinner: [],
+  //     snack: [],
+  //     teatime: [],
+  //   });
 
   function buildURL(data, mealType) {
     let url =
@@ -126,30 +127,31 @@ const MealPlanner = (props) => {
     }
   }, []);
 
-  function planComponent() {
-    return (
-      <>
-        <p>
-          breakfast menu: length: {selectedMeal.breakfast.length}{" "}
-          {JSON.stringify(selectedMeal.breakfast)}
-        </p>
-        <p>
-          lunch menu: length: {selectedMeal.lunch.length}{" "}
-          {JSON.stringify(selectedMeal.lunch)}
-        </p>
-        <p>
-          dinner menu: length: {selectedMeal.dinner.length}{" "}
-          {JSON.stringify(selectedMeal.dinner)}
-        </p>
-      </>
-    );
-  }
-
   function renderPlan() {
     if (props.data.meal[0] === 3) {
-      return !isLoading[0] && planComponent();
+      return (
+        !isLoading[0] && (
+          <MealPlan
+            breakfastMenu={breakfast}
+            lunchDinnerMenu={lunchDinner}
+            snackMenu={snack}
+            meals={props.data.meal[0]}
+            days={props.data.days}
+          />
+        )
+      );
     } else if (props.data.meal[0] === 5) {
-      return isLoading.every((loading) => !loading) && planComponent();
+      return (
+        isLoading.every((loading) => !loading) && (
+          <MealPlan
+            breakfastMenu={breakfast}
+            lunchDinnerMenu={lunchDinner}
+            snackMenu={snack}
+            meals={props.data.meal[0]}
+            days={props.data.days}
+          />
+        )
+      );
     }
     // planComponent();
     return;
