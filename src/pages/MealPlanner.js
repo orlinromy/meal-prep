@@ -8,6 +8,14 @@ const MealPlanner = (props) => {
   const [snackMenu, setSnackMenu] = useState([]);
   const [nextLunchAPI, setNextLunchAPI] = useState({ none: "" });
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
+  const [isLoading, setIsLoading] = useState([true, true]);
+  const [selectedMeal, setSelectedMeal] = useState({
+    breakfast: [],
+    lunch: [],
+    dinner: [],
+    snack: [],
+    teatime: [],
+  });
 
   function buildURL(data, mealType) {
     let url =
@@ -33,7 +41,7 @@ const MealPlanner = (props) => {
     return url;
   }
 
-  async function fetchData(url, mealType) {
+  async function fetchData(url, mealType, callback) {
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -65,6 +73,7 @@ const MealPlanner = (props) => {
     } catch (err) {
       console.log(err.message);
     }
+    callback && callback();
   }
 
   useEffect(() => {
@@ -72,7 +81,14 @@ const MealPlanner = (props) => {
       if (Object.keys(nextLunchAPI)[0] !== "none") {
         fetchData(
           nextLunchAPI[Object.keys(nextLunchAPI)[0]],
-          Object.keys(nextLunchAPI)[0]
+          Object.keys(nextLunchAPI)[0],
+          () => {
+            if (i === 1) {
+              setIsLoading((prevState) => {
+                return [false, prevState[1]];
+              });
+            }
+          }
         );
       }
     }
@@ -83,7 +99,14 @@ const MealPlanner = (props) => {
       if (Object.keys(nextSnackAPI)[0] !== "none") {
         fetchData(
           nextSnackAPI[Object.keys(nextSnackAPI)[0]],
-          Object.keys(nextSnackAPI)[0]
+          Object.keys(nextSnackAPI)[0],
+          () => {
+            if (i === 1) {
+              setIsLoading((prevState) => {
+                return [prevState[0], false];
+              });
+            }
+          }
         );
       }
     }
@@ -99,24 +122,40 @@ const MealPlanner = (props) => {
         "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         mealType
       );
+      console.log(url);
     }
   }, []);
 
-  return (
-    <div>
-      <p>
-        breakfast menu: length: {breakfastMenu.length}{" "}
-        {JSON.stringify(breakfastMenu)}
-      </p>
-      <p>
-        lunch/dinner menu: length: {lunchDinnerMenu.length}{" "}
-        {JSON.stringify(lunchDinnerMenu)}
-      </p>
-      <p>
-        snack menu: length: {snackMenu.length} {JSON.stringify(snackMenu)}
-      </p>
-    </div>
-  );
+  function planComponent() {
+    return (
+      <>
+        <p>
+          breakfast menu: length: {selectedMeal.breakfast.length}{" "}
+          {JSON.stringify(selectedMeal.breakfast)}
+        </p>
+        <p>
+          lunch menu: length: {selectedMeal.lunch.length}{" "}
+          {JSON.stringify(selectedMeal.lunch)}
+        </p>
+        <p>
+          dinner menu: length: {selectedMeal.dinner.length}{" "}
+          {JSON.stringify(selectedMeal.dinner)}
+        </p>
+      </>
+    );
+  }
+
+  function renderPlan() {
+    if (props.data.meal[0] === 3) {
+      return !isLoading[0] && planComponent();
+    } else if (props.data.meal[0] === 5) {
+      return isLoading.every((loading) => !loading) && planComponent();
+    }
+    // planComponent();
+    return;
+  }
+
+  return <div>{renderPlan()}</div>;
 };
 
 export default MealPlanner;
