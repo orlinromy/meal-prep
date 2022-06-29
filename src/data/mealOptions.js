@@ -40,6 +40,11 @@ const mealTypes = {
   5: ["breakfast", "lunch", "snack"],
 };
 
+const meals = {
+  3: ["breakfast", "lunch", "dinner"],
+  5: ["breakfast", "lunch", "dinner", "snack", "teatime"],
+};
+
 const allergy = [
   { type: "none", image: salads },
   { type: "celery-free", image: salads },
@@ -89,4 +94,4 @@ const incaseneeded = [
   "_cont=CHcVQBtNNQphDmgVQntAEX4BY0t3AgIDSmxJCmsaalx6DQoORHdcETESNgQmBAIGR2ARAmcWMFRyUVIGSzMRAWNBY1F3BgUAUQhcETRRPAhhDgcHX3cDUjRGEAQvW0FeFiYiUjxENkd5T05K",
 ];
 
-export { diet, meal, allergy, health, mealTypes };
+export { diet, meal, allergy, health, mealTypes, meals };

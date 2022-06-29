@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { mealTypes } from "../data/mealOptions";
+import { mealTypes, meals } from "../data/mealOptions";
 import { breakfast, lunchDinner, snack } from "../data/tempData";
 import MealPlan from "../components/MealPlan/MealPlan";
 
@@ -10,13 +10,6 @@ const MealPlanner = (props) => {
   const [nextLunchAPI, setNextLunchAPI] = useState({ none: "" });
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
   const [isLoading, setIsLoading] = useState([true, true]);
-  //   const [selectedMeal, setSelectedMeal] = useState({
-  //     breakfast: [],
-  //     lunch: [],
-  //     dinner: [],
-  //     snack: [],
-  //     teatime: [],
-  //   });
 
   function buildURL(data, mealType) {
     let url =
@@ -129,28 +122,28 @@ const MealPlanner = (props) => {
 
   function renderPlan() {
     if (props.data.meal[0] === 3) {
-      return (
-        !isLoading[0] && (
-          <MealPlan
-            breakfastMenu={breakfast}
-            lunchDinnerMenu={lunchDinner}
-            snackMenu={snack}
-            meals={props.data.meal[0]}
-            days={props.data.days}
-          />
-        )
+      return !isLoading[0] ? (
+        <MealPlan
+          breakfastMenu={breakfast}
+          lunchDinnerMenu={lunchDinner}
+          snackMenu={snack}
+          meals={meals[props.data.meal[0]]}
+          days={props.data.days}
+        />
+      ) : (
+        <h1>Chopping onions... 🥲</h1>
       );
     } else if (props.data.meal[0] === 5) {
-      return (
-        isLoading.every((loading) => !loading) && (
-          <MealPlan
-            breakfastMenu={breakfast}
-            lunchDinnerMenu={lunchDinner}
-            snackMenu={snack}
-            meals={props.data.meal[0]}
-            days={props.data.days}
-          />
-        )
+      return isLoading.every((loading) => !loading) ? (
+        <MealPlan
+          breakfastMenu={breakfast}
+          lunchDinnerMenu={lunchDinner}
+          snackMenu={snack}
+          meals={meals[props.data.meal[0]]}
+          days={props.data.days}
+        />
+      ) : (
+        <h1>Chopping onions... 🥲</h1>
       );
     }
     // planComponent();

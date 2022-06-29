@@ -6,7 +6,7 @@ const Home = () => {
     <div>
       <h1>Welcome to Prep-a-Meal</h1>
       <p>
-        Having a hell wekk ahead? Don't worry, we'll help you to decide what to
+        Having a hell week ahead? Don't worry, we'll help you to decide what to
         eat (hopefully)
       </p>
       <NavLink to="/create">
