@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { mealTypes, meals } from "../data/mealOptions";
 import { breakfast, lunchDinner, snack } from "../data/tempData";
 import MealPlan from "../components/MealPlan/MealPlan";
+import RecipeContainer from "../components/Recipe/RecipeContainer";
+import Groceries from "../components/Groceries/Groceries";
 
 const MealPlanner = (props) => {
   const [breakfastMenu, setBreakfastMenu] = useState([]);
@@ -10,6 +12,8 @@ const MealPlanner = (props) => {
   const [nextLunchAPI, setNextLunchAPI] = useState({ none: "" });
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
   const [isLoading, setIsLoading] = useState([true, true]);
+
+  const [recipeData, setRecipeData] = useState(null);
 
   function buildURL(data, mealType) {
     let url =
@@ -123,25 +127,33 @@ const MealPlanner = (props) => {
   function renderPlan() {
     if (props.data.meal[0] === 3) {
       return !isLoading[0] ? (
-        <MealPlan
-          breakfastMenu={breakfast}
-          lunchDinnerMenu={lunchDinner}
-          snackMenu={snack}
-          meals={meals[props.data.meal[0]]}
-          days={props.data.days}
-        />
+        <>
+          <MealPlan
+            breakfastMenu={breakfast}
+            lunchDinnerMenu={lunchDinner}
+            snackMenu={snack}
+            meals={meals[props.data.meal[0]]}
+            days={props.data.days}
+            doubleClicked={setRecipeData}
+          />
+          <RecipeContainer recipeToShow={recipeData} />
+        </>
       ) : (
         <h1>Chopping onions... 🥲</h1>
       );
     } else if (props.data.meal[0] === 5) {
       return isLoading.every((loading) => !loading) ? (
-        <MealPlan
-          breakfastMenu={breakfast}
-          lunchDinnerMenu={lunchDinner}
-          snackMenu={snack}
-          meals={meals[props.data.meal[0]]}
-          days={props.data.days}
-        />
+        <>
+          <MealPlan
+            breakfastMenu={breakfast}
+            lunchDinnerMenu={lunchDinner}
+            snackMenu={snack}
+            meals={meals[props.data.meal[0]]}
+            days={props.data.days}
+            doubleClicked={setRecipeData}
+          />
+          <RecipeContainer recipeToShow={recipeData} />
+        </>
       ) : (
         <h1>Chopping onions... 🥲</h1>
       );
@@ -150,7 +162,17 @@ const MealPlanner = (props) => {
     return;
   }
 
-  return <div>{renderPlan()}</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+      }}
+    >
+      {renderPlan()}
+    </div> //
+  );
 };
 
 export default MealPlanner;

@@ -1,54 +1,44 @@
 import React from "react";
 import MealCard from "./MealCard";
+import { Draggable } from "react-beautiful-dnd";
 
 const MealList = (props) => {
-  return props.meal === 3 ? (
-    <>
-      <tr>
-        <td>
-          <MealCard data={props.plan[3 * props.i]} idx={3 * props.i} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <MealCard data={props.plan[3 * props.i + 1]} idx={3 * props.i} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <MealCard data={props.plan[3 * props.i + 2]} idx={3 * props.i} />
-        </td>
-      </tr>
-    </>
-  ) : (
-    <>
-      <tr>
-        <td>
-          <MealCard data={props.plan[5 * props.i]} idx={5 * props.i} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <MealCard data={props.plan[5 * props.i + 1]} idx={5 * props.i + 1} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <MealCard data={props.plan[5 * props.i + 2]} idx={5 * props.i + 2} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <MealCard data={props.plan[5 * props.i + 3]} idx={5 * props.i + 3} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <MealCard data={props.plan[5 * props.i + 4]} idx={5 * props.i + 4} />
-        </td>
-      </tr>
-    </>
-  );
+  function generateMealList() {
+    const el = [];
+    for (let i = 0; i < props.meal; i++) {
+      el.push(
+        <Draggable
+          key={props.i * props.meal + i}
+          draggableId={(props.i * props.meal + i).toString()}
+          index={props.i * props.meal + i}
+        >
+          {(provided) => (
+            <tr
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <td
+                style={{
+                  height: "50px",
+                  width: "400px",
+                }}
+              >
+                <MealCard
+                  data={props.plan[props.meal * props.i + i]}
+                  idx={props.i * props.meal + i}
+                  doubleClicked={props.doubleClicked}
+                />
+              </td>
+            </tr>
+          )}
+        </Draggable>
+      );
+    }
+    return el;
+  }
+
+  return <>{generateMealList().map((el) => el)}</>;
 };
 
 export default MealList;
