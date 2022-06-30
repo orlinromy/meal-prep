@@ -37,9 +37,9 @@ const Groceries = (props) => {
   }, [props.groceries]);
 
   return (
-    <>
+    <div>
       <GroceryCard groceries={allGroceries} />
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Selection from "../components/SelectionCard/Selection";
 import { diet, meal, allergy, health } from "../data/mealOptions";
-import styles from "../styles/Create.module.css";
 
 const Create = (props) => {
   const [days, setDays] = useState(1);
@@ -39,7 +38,7 @@ const Create = (props) => {
     navigate("/planner");
   }
   useEffect(() => {
-    // document.body.style.backgroundColor = "#ffefd9";
+    document.body.style.backgroundColor = "";
   }, []);
   return (
     <form
@@ -115,7 +114,7 @@ const Create = (props) => {
       />
       <button
         type="submit"
-        className="w-60 bg-[#659B91] text-cream p-2.5 rounded-xl text-"
+        className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg my-4 hover:bg-[#517c74]"
       >
         Submit
       </button>

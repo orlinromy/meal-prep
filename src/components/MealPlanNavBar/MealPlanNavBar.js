@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const MealPlanNavBar = (props) => {
-  console.log(props);
+  useEffect(() => {
+    document.body.style.backgroundColor = "white";
+  }, []);
   function generateDays() {
     const el = [];
     for (let i = 0; i < props.days; i++) {
@@ -18,10 +20,7 @@ const MealPlanNavBar = (props) => {
     return el;
   }
   return (
-    <div
-      style={{ width: "13%", maxHeight: "96vh" }}
-      className="m-0 border-r-2 border-t-2"
-    >
+    <div style={{ width: "13%", maxHeight: "96vh" }} className="m-0 border-r-2">
       <p className="text-2xl mt-4 ml-2">Navigation</p>
       <Accordion className="bg-transparent shadow-none mb-0">
         <AccordionSummary

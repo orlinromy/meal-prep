@@ -98,41 +98,52 @@ const MealPlan = (props) => {
   return (
     <>
       {plan.length !== 0 && (
-        <div
-          className={"overallDiv " + styles.overallDiv}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            maxHeight: "96vh",
-            overflowY: "scroll",
-          }}
-        >
+        <>
           <div
-            className="test"
+            className={
+              "overallDiv " +
+              styles.overallDiv +
+              " border-r-2 pr-8 pt-4 border-b-2"
+            }
             style={{
               display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-start",
+              flexDirection: "column",
+              maxHeight: "96vh",
+              overflowY: "scroll",
+              boxShadow: "rgba(100, 100, 111, 0.1) 20px 7px 29px 0px",
             }}
           >
-            <table>
-              <tbody>{mealLabel().map((el) => el)}</tbody>
-            </table>
-            <table>
-              <DragDropContext onDragEnd={handleDragEnd}>
-                <Droppable droppableId="mealCards">
-                  {(provided) => (
-                    <tbody {...provided.droppableProps} ref={provided.innerRef}>
-                      {mealComponent().map((x) => x)}
-                      {provided.placeholder}
-                    </tbody>
-                  )}
-                </Droppable>
-              </DragDropContext>
-            </table>
+            <p className="text-2xl pt-4 pb-4">Meal Plan</p>
+            <div
+              className="test"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+              }}
+            >
+              <table>
+                <tbody>{mealLabel().map((el) => el)}</tbody>
+              </table>
+              <table>
+                <DragDropContext onDragEnd={handleDragEnd}>
+                  <Droppable droppableId="mealCards">
+                    {(provided) => (
+                      <tbody
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+                        {mealComponent().map((x) => x)}
+                        {provided.placeholder}
+                      </tbody>
+                    )}
+                  </Droppable>
+                </DragDropContext>
+              </table>
+            </div>
+            <Groceries groceries={plan}></Groceries>
           </div>
-          <Groceries groceries={plan}></Groceries>
-        </div>
+        </>
       )}
     </>
   );
