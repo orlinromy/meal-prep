@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Groceries from "../Groceries/Groceries";
 import MealList from "./MealList";
+import styles from "../../styles/MealPlan.module.css";
 
 const MealPlan = (props) => {
   const [plan, setPlan] = useState([]);
@@ -76,7 +77,7 @@ const MealPlan = (props) => {
       for (let j = 0; j < props.meals.length; j++) {
         if (j === 0) {
           el.push(
-            <tr style={{ height: "106px" }}>
+            <tr style={{ height: "106px" }} id={"day" + (1 + i)}>
               <td style={{ width: "90px" }}>Day {i + 1}</td>
               <td style={{ width: "90px" }}>{props.meals[j]}</td>
             </tr>
@@ -98,8 +99,13 @@ const MealPlan = (props) => {
     <>
       {plan.length !== 0 && (
         <div
-          className="overallDiv"
-          style={{ display: "flex", flexDirection: "column" }}
+          className={"overallDiv " + styles.overallDiv}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            maxHeight: "96vh",
+            overflowY: "scroll",
+          }}
         >
           <div
             className="test"
@@ -107,8 +113,6 @@ const MealPlan = (props) => {
               display: "flex",
               flexDirection: "row",
               alignItems: "flex-start",
-              height: "90vh",
-              overflowY: "scroll",
             }}
           >
             <table>

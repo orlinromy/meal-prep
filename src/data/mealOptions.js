@@ -1,8 +1,17 @@
 import salads from "../assets/salads.png";
+import breakfast from "../assets/english-breakfast.png";
+import dinner from "../assets/dinner.png";
+import protein from "../assets/protein.png";
+import fiber from "../assets/fiber.png";
+import lowFat from "../assets/low-fat.png";
+import lowCarb from "../assets/low-carb.png";
+import lowSodium from "../assets/salt-free.png";
+import forbidden from "../assets/forbidden.png";
+
 const diet = [
   {
     type: "None",
-    image: salads,
+    image: forbidden,
   },
   {
     type: "Balanced",
@@ -10,29 +19,29 @@ const diet = [
   },
   {
     type: "High-Fiber",
-    image: salads,
+    image: fiber,
   },
   {
     type: "High-Protein",
-    image: salads,
+    image: protein,
   },
   {
     type: "Low-Carb",
-    image: salads,
+    image: lowCarb,
   },
   {
     type: "Low-Fat",
-    image: salads,
+    image: lowFat,
   },
   {
     type: "Low-Sodium",
-    image: salads,
+    image: lowSodium,
   },
 ];
 
 const meal = [
-  { type: "3", image: salads },
-  { type: "5", image: salads },
+  { type: "3 (Breakfast, Lunch, Dinner)", image: breakfast },
+  { type: "5 (+ Snack and Teatime)", image: dinner },
 ];
 
 const mealTypes = {
@@ -46,46 +55,46 @@ const meals = {
 };
 
 const allergy = [
-  { type: "none", image: salads },
-  { type: "celery-free", image: salads },
-  { type: "crustacean-free", image: salads },
-  { type: "dairy-free", image: salads },
-  { type: "egg-free", image: salads },
-  { type: "fish-free", image: salads },
-  { type: "fodmap-free", image: salads },
-  { type: "gluten-free", image: salads },
-  { type: "peanut-free", image: salads },
-  { type: "lupine-free", image: salads },
-  { type: "mollusk-free", image: salads },
-  { type: "pork-free", image: salads },
-  { type: "red-meat-free", image: salads },
-  { type: "sesame-free", image: salads },
-  { type: "shellfish-free", image: salads },
-  { type: "soy-free", image: salads },
-  { type: "mustard-free", image: salads },
-  { type: "sulfite-free", image: salads },
-  { type: "wheat-free", image: salads },
-  { type: "tree-nut-free", image: salads },
+  { type: "none", image: "" },
+  { type: "celery-free", image: "" },
+  { type: "crustacean-free", image: "" },
+  { type: "dairy-free", image: "" },
+  { type: "egg-free", image: "" },
+  { type: "fish-free", image: "" },
+  { type: "fodmap-free", image: "" },
+  { type: "gluten-free", image: "" },
+  { type: "peanut-free", image: "" },
+  { type: "lupine-free", image: "" },
+  { type: "mollusk-free", image: "" },
+  { type: "pork-free", image: "" },
+  { type: "red-meat-free", image: "" },
+  { type: "sesame-free", image: "" },
+  { type: "shellfish-free", image: "" },
+  { type: "soy-free", image: "" },
+  { type: "mustard-free", image: "" },
+  { type: "sulfite-free", image: "" },
+  { type: "wheat-free", image: "" },
+  { type: "tree-nut-free", image: "" },
 ];
 
 const health = [
-  { type: "none", image: salads },
-  { type: "alcohol-cocktail", image: salads },
-  { type: "alcohol-free", image: salads },
-  { type: "DASH", image: salads },
-  { type: "immuno-supportive", image: salads },
-  { type: "keto-friendly", image: salads },
-  { type: "kidney-friendly", image: salads },
-  { type: "kosher", image: salads },
-  { type: "low-potassium", image: salads },
-  { type: "low-sugar", image: salads },
-  { type: "Mediterranean", image: salads },
-  { type: "no-oil-added", image: salads },
-  { type: "paleo", image: salads },
-  { type: "pescatarian", image: salads },
-  { type: "sugar-conscious", image: salads },
-  { type: "vegan", image: salads },
-  { type: "vegetarian", image: salads },
+  { type: "none", image: "" },
+  { type: "alcohol-cocktail", image: "" },
+  { type: "alcohol-free", image: "" },
+  { type: "DASH", image: "" },
+  { type: "immuno-supportive", image: "" },
+  { type: "keto-friendly", image: "" },
+  { type: "kidney-friendly", image: "" },
+  { type: "kosher", image: "" },
+  { type: "low-potassium", image: "" },
+  { type: "low-sugar", image: "" },
+  { type: "Mediterranean", image: "" },
+  { type: "no-oil-added", image: "" },
+  { type: "paleo", image: "" },
+  { type: "pescatarian", image: "" },
+  { type: "sugar-conscious", image: "" },
+  { type: "vegan", image: "" },
+  { type: "vegetarian", image: "" },
 ];
 
 const incaseneeded = [

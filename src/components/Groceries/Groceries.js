@@ -17,6 +17,7 @@ const Groceries = (props) => {
       }
     }
     arr.sort();
+    arr.reverse();
 
     for (let i = 0; i < arr.length; i++) {
       if (

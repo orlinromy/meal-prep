@@ -19,19 +19,33 @@ const SelectableCardGroup = (props) => {
     }
   }
 
-  return (
-    <div>
-      <Grid container justifyContent="space-evenly" alignItems="stretch">
-        {props.selection.map((type, idx) => (
-          <SelectableCard
-            type={type}
-            handleClick={() => {
-              handleClick(idx);
-            }}
-            isActive={props.value.includes(idx)}
-          ></SelectableCard>
-        ))}
-      </Grid>
+  return props.hasImage ? (
+    <div className="p-4 flex flex-wrap flex-row justify-center">
+      {props.selection.map((type, idx) => (
+        <SelectableCard
+          key={Math.random()}
+          type={type}
+          handleClick={() => {
+            handleClick(idx);
+          }}
+          hasImage={props.hasImage}
+          isActive={props.value.includes(idx)}
+        ></SelectableCard>
+      ))}
+    </div>
+  ) : (
+    <div className="flex flex-wrap justify-center">
+      {props.selection.map((type, idx) => (
+        <SelectableCard
+          key={Math.random()}
+          type={type}
+          handleClick={() => {
+            handleClick(idx);
+          }}
+          hasImage={props.hasImage}
+          isActive={props.value.includes(idx)}
+        ></SelectableCard>
+      ))}
     </div>
   );
 };

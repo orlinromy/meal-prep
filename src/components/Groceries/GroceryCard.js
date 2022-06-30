@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Card } from "@mui/material";
 
 const GroceryCard = (props) => {
   const [itemNotFound, setItemNotFound] = useState([]);
@@ -50,26 +51,38 @@ const GroceryCard = (props) => {
     fetchData();
   }, [props.groceries]);
 
-  return isLoading ? (
-    <p>Loading...</p>
-  ) : (
-    <div>
-      <div>
-        {fpItem.map((item) => (
-          <>
-            <img src={item.data.images[0]} style={{ width: "150px" }} />
-            <p>Found in fairprice for {item.item}:</p>
-            <p>{item.data.name} </p>
-          </>
-        ))}
-      </div>
-      <div>
-        <p>Item Not Found: </p>
-        {itemNotFound.map((item) => (
-          <p>{item}</p>
-        ))}
-      </div>
-    </div>
+  return (
+    <>
+      <h1 id="groceries">Groceries for the week</h1>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          {fpItem.map((item) => (
+            <>
+              <p>Found in fairprice for {item.item}:</p>
+              <Card>
+                <img src={item.data.images[0]} style={{ width: "80px" }} />
+                <p>{item.data.name} </p>
+                <a
+                  href={`https://www.fairprice.com.sg/search?query=${item.item}`}
+                  target="_blank"
+                >
+                  Find out more
+                </a>
+              </Card>
+            </>
+          ))}
+
+          <div>
+            <p>Item Not Found: </p>
+            {itemNotFound.map((item) => (
+              <p>{item}</p>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

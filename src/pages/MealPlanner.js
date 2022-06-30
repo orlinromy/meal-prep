@@ -3,7 +3,8 @@ import { mealTypes, meals } from "../data/mealOptions";
 import { breakfast, lunchDinner, snack } from "../data/tempData";
 import MealPlan from "../components/MealPlan/MealPlan";
 import RecipeContainer from "../components/Recipe/RecipeContainer";
-import Groceries from "../components/Groceries/Groceries";
+import MealPlanNavBar from "../components/MealPlanNavBar/MealPlanNavBar";
+import LoadingOverlay from "../components/MealPlan/LoadingOverlay";
 
 const MealPlanner = (props) => {
   const [breakfastMenu, setBreakfastMenu] = useState([]);
@@ -54,7 +55,7 @@ const MealPlanner = (props) => {
         setNextLunchAPI({
           [mealType]:
             // TODO: uncomment
-            //    data._links.next.href,
+            // data._links.next.href,
             "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         });
       } else if (mealType === "snack") {
@@ -64,7 +65,7 @@ const MealPlanner = (props) => {
         setNextSnackAPI({
           [mealType]:
             //TODO: uncomment
-            //   data._links.next.href,
+            // data._links.next.href,
             "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         });
       }
@@ -128,6 +129,10 @@ const MealPlanner = (props) => {
     if (props.data.meal[0] === 3) {
       return !isLoading[0] ? (
         <>
+          <MealPlanNavBar
+            days={props.data.days}
+            meals={meals[props.data.meal[0]]}
+          ></MealPlanNavBar>
           <MealPlan
             breakfastMenu={breakfast}
             lunchDinnerMenu={lunchDinner}
@@ -139,11 +144,15 @@ const MealPlanner = (props) => {
           <RecipeContainer recipeToShow={recipeData} />
         </>
       ) : (
-        <h1>Chopping onions... 🥲</h1>
+        <LoadingOverlay />
       );
     } else if (props.data.meal[0] === 5) {
       return isLoading.every((loading) => !loading) ? (
         <>
+          <MealPlanNavBar
+            days={props.data.days}
+            meals={meals[props.data.meal[0]]}
+          ></MealPlanNavBar>
           <MealPlan
             breakfastMenu={breakfast}
             lunchDinnerMenu={lunchDinner}
@@ -155,24 +164,17 @@ const MealPlanner = (props) => {
           <RecipeContainer recipeToShow={recipeData} />
         </>
       ) : (
-        <h1>Chopping onions... 🥲</h1>
+        <LoadingOverlay />
       );
     }
-    // planComponent();
     return;
   }
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-      }}
-    >
-      {renderPlan()}
-    </div> //
-  );
+  return <div className="flex flex-row justify-around">{renderPlan()}</div>;
 };
 
 export default MealPlanner;
+
+// <div className="drop-shadow-xl grid place-items-center content-center w-5/12 h-5/12 rounded-2xl bg-white">
+//           <img src={mixer} className="w-5/12 h-5/12"></img>
+//         </div>

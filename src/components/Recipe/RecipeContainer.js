@@ -4,7 +4,7 @@ import NutritionTable from "./NutritionTable";
 
 const RecipeContainer = (props) => {
   return props.recipeToShow ? (
-    <div style={{ width: "40%", height: "90vh" }}>
+    <div style={{ width: "40%", maxHeight: "90vh" }}>
       <h2>{props.recipeToShow.recipe.label}</h2>
       <p>
         {props.recipeToShow.recipe.yield}{" "}
@@ -22,7 +22,7 @@ const RecipeContainer = (props) => {
       <NutritionTable nutrients={props.recipeToShow.recipe.digest} />
     </div>
   ) : (
-    <div style={{ width: "40%", height: "100vh" }}>
+    <div style={{ width: "40%", height: "99vh" }}>
       <p>Double-click on any meal to get the recipe</p>
     </div>
   );

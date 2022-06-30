@@ -12,9 +12,6 @@ const NavBar = () => {
         <p>
           <NavLink to="/create">Create</NavLink>
         </p>
-        <p>
-          <NavLink to="/planner">Planner</NavLink>
-        </p>
       </span>
     </nav>
   );

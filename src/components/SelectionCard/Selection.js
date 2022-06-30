@@ -4,7 +4,7 @@ import SelectableCardGroup from "./SelectableCardGroup";
 
 const Selection = (props) => {
   return (
-    <>
+    <div className="m-4">
       <SelectionLabel text={props.title} />
       <SelectableCardGroup
         selection={props.types}
@@ -12,8 +12,9 @@ const Selection = (props) => {
         id={props.id}
         setData={props.setData}
         value={props.value}
+        hasImage={props.hasImage}
       />
-    </>
+    </div>
   );
 };
 
