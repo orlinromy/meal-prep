@@ -1,6 +1,6 @@
 import { Card, Box } from "@mui/material";
 import React from "react";
-import salads from "../../assets/salads.png";
+// import salads from "../../assets/salads.png";
 
 const MealCard = (props) => {
   function handleClick(e) {
@@ -22,8 +22,8 @@ const MealCard = (props) => {
       >
         <img
           style={{ width: "80px", height: "80px", marginRight: "8px" }}
-          // src={props.data.recipe.images.THUMBNAIL.url}
-          src={salads}
+          src={props.data.recipe.images.THUMBNAIL.url}
+          // src={salads}
           alt={props.data.recipe.label}
         ></img>
         <Box display="flex" flexDirection="column">

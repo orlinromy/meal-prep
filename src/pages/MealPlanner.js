@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { mealTypes, meals } from "../data/mealOptions";
-import { breakfast, lunchDinner, snack } from "../data/tempData";
+// import { breakfast, lunchDinner, snack } from "../data/tempData";
 import MealPlan from "../components/MealPlan/MealPlan";
 import RecipeContainer from "../components/Recipe/RecipeContainer";
 import MealPlanNavBar from "../components/MealPlanNavBar/MealPlanNavBar";
@@ -46,27 +46,27 @@ const MealPlanner = (props) => {
       const data = await res.json();
       if (mealType === "breakfast") {
         setBreakfastMenu((prevState) => {
-          return [...prevState, data]; // //TODO: uncomment ...data.hits
+          return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
         });
       } else if (mealType === "lunch") {
         setLunchDinnerMenu((prevState) => {
-          return [...prevState, data]; // //TODO: uncomment ...data.hits
+          return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
         });
         setNextLunchAPI({
           [mealType]:
             // TODO: uncomment
-            // data._links.next.href,
-            "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+            data._links.next.href,
+          // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         });
       } else if (mealType === "snack") {
         setSnackMenu((prevState) => {
-          return [...prevState, data]; // //TODO: uncomment ...data.hits
+          return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
         });
         setNextSnackAPI({
           [mealType]:
             //TODO: uncomment
-            // data._links.next.href,
-            "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+            data._links.next.href,
+          // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         });
       }
     } catch (err) {
@@ -117,8 +117,8 @@ const MealPlanner = (props) => {
 
       fetchData(
         //TODO: uncomment
-        // url,
-        "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+        url,
+        // "https://apito.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         mealType
       );
       console.log(url);
@@ -134,9 +134,9 @@ const MealPlanner = (props) => {
             meals={meals[props.data.meal[0]]}
           ></MealPlanNavBar>
           <MealPlan
-            breakfastMenu={breakfast}
-            lunchDinnerMenu={lunchDinner}
-            snackMenu={snack}
+            breakfastMenu={breakfastMenu}
+            lunchDinnerMenu={lunchDinnerMenu}
+            snackMenu={snackMenu}
             meals={meals[props.data.meal[0]]}
             days={props.data.days}
             doubleClicked={setRecipeData}
@@ -154,9 +154,9 @@ const MealPlanner = (props) => {
             meals={meals[props.data.meal[0]]}
           ></MealPlanNavBar>
           <MealPlan
-            breakfastMenu={breakfast}
-            lunchDinnerMenu={lunchDinner}
-            snackMenu={snack}
+            breakfastMenu={breakfastMenu}
+            lunchDinnerMenu={lunchDinnerMenu}
+            snackMenu={snackMenu}
             meals={meals[props.data.meal[0]]}
             days={props.data.days}
             doubleClicked={setRecipeData}
