@@ -6,10 +6,10 @@ const RecipeContainer = (props) => {
   return props.recipeToShow ? (
     <div
       style={{ width: "40%", maxHeight: "96vh", overflowY: "scroll" }}
-      className="pt-8 text-center"
+      className="pt-8 pr-4 text-center"
     >
       <img
-        className="rounded-full"
+        className="rounded-md mx-auto"
         src={props.recipeToShow.recipe.images.REGULAR.url}
         style={{
           width: `${props.recipeToShow.recipe.images.REGULAR.width}`,

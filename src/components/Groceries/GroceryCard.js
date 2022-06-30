@@ -80,12 +80,12 @@ const GroceryCard = (props) => {
                   <p>{item.item}</p>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Card className="py-2 px-4 drop-shadow-xl">
+                  <Card className="py-2 px-4 drop-shadow-xl rounded-lg">
                     <p>Found {item.item} in Fairprice:</p>
                     <div className="flex flex-row">
                       <img
                         src={item.data.images[0]}
-                        style={{ width: "80px" }}
+                        style={{ width: "100px" }}
                         className="rounded-md"
                       />
                       <div className="flex flex-column">
@@ -107,7 +107,7 @@ const GroceryCard = (props) => {
           {itemNotFound.map((item) => (
             <div className="flex flex-row">
               <Checkbox></Checkbox>
-              <Accordion className="bg-transparent shadow-none mb-0 w-[400px]">
+              <Accordion className="bg-transparent shadow-none mb-0 w-[450px]">
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
@@ -116,7 +116,7 @@ const GroceryCard = (props) => {
                   <p>{item}</p>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Card className="py-2 px-4 drop-shadow-xl">
+                  <Card className="py-2 px-4 drop-shadow-xl rounded-lg">
                     <p>Item is not found in Fairprice</p>
                     <p>
                       Try searching in{" "}

@@ -12,7 +12,7 @@ const MealCard = (props) => {
       variant="outlined"
       sx={{ height: "104px" }}
       onDoubleClick={handleClick}
-      className="drop-shadow-lg"
+      className="drop-shadow-lg rounded-lg"
     >
       <Box
         display="flex"
@@ -25,6 +25,7 @@ const MealCard = (props) => {
           src={props.data.recipe.images.THUMBNAIL.url}
           // src={salads}
           alt={props.data.recipe.label}
+          className="rounded-lg"
         ></img>
         <Box display="flex" flexDirection="column">
           <p style={{ marginBottom: "4px" }}>{props.data.recipe.label}</p>
