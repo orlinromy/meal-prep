@@ -52,22 +52,26 @@ const MealPlanner = (props) => {
         setLunchDinnerMenu((prevState) => {
           return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
         });
-        setNextLunchAPI({
-          [mealType]:
-            // TODO: uncomment
-            data._links.next.href,
-          // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
-        });
+        if (data.count > 20) {
+          setNextLunchAPI({
+            [mealType]:
+              // TODO: uncomment
+              data._links.next.href,
+            // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+          });
+        }
       } else if (mealType === "snack") {
         setSnackMenu((prevState) => {
           return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
         });
-        setNextSnackAPI({
-          [mealType]:
-            //TODO: uncomment
-            data._links.next.href,
-          // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
-        });
+        if (data.count > 20) {
+          setNextSnackAPI({
+            [mealType]:
+              //TODO: uncomment
+              data._links.next.href,
+            // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+          });
+        }
       }
     } catch (err) {
       console.log(err.message);
@@ -121,7 +125,6 @@ const MealPlanner = (props) => {
         // "https://apito.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
         mealType
       );
-      console.log(url);
     }
   }, []);
 
