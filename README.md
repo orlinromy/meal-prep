@@ -1,4 +1,4 @@
-# Prep-a-meal
+# Prep-a-meal (WIP)
 
 ## Description
 
@@ -15,7 +15,7 @@ A meal planner app, built based on Edamam API, in which user can get a list of r
 ### Wireframes
 
 Component Tree:
-![component tree](component_tree.jpeg)
+![component tree](component-tree.jpeg)
 
 ### User Stories
 
