@@ -16,18 +16,18 @@ A meal planner app, built using React and Edamam API, in which user can get a li
 
 Here are some wireframes that I first created when planning the app. Some feature, i.e. Save Modal and Save page are not implemented yet at the time of writing as I was overthinking my project which led to overcomplicating the project. There are some possibility that these features will be implemented in the future so do look out for it 😉
 
-![Home](wireframe-1.jpeg)
+![Home](wireframe-1.jpg)
 
-![Create Plan](wireframe-2.jpeg)
+![Create Plan](wireframe-2.jpg)
 
-![Meal Planner](wireframe-3.jpeg)
+![Meal Planner](wireframe-3.jpg)
 
-![Save Modal and Menu Slider](wireframe-4.jpeg)
+![Save Modal and Menu Slider](wireframe-4.jpg)
 
-![Saved Plan](wireframe-5.jpeg)
+![Saved Plan](wireframe-5.jpg)
 
 Component Tree:
-![component tree](component-tree.jpeg)
+![component tree](component-tree.jpg)
 
 ### User Stories
 
@@ -50,7 +50,7 @@ Component Tree:
    This step includes creating an account to get an API key, trying out the API, and using `Fetch API` in the script to get the data. As there's a 10,000 API call limit per month for the free version of Edamam API, I had to emulate the API call using a dummy API and copy the data I got from trying out the API so that I can work on the data presentation without having to call the API multiple times.
 
    Edamam API only returns 20 recipes per call, and to get another 20 recipes (so that there are more options to randomize from when generating lunch, dinner, snack, and teatime), I need to call the next page API specified in the data, as shown in the screenshot below
-   ![edamam-api-sample](edamam-api-sample.png).
+   ![edamam-api-sample](edamam-api-sample.png)
 
    In order to do this, I created another state called `nextAPI`, which is initialized with the object `{ none: "" }`, and use `useEffect` with the key as dependency.
 
@@ -85,7 +85,8 @@ Component Tree:
    When a `SelectableCard` is clicked, it calls `handleClick` function defined in `SelectableCardGroup` where the selection logic resides. As we have a `setState` function propped down from `Create` page to the selection components as `setData`, we can call `props.setData` save the selected option to the state and trigger re-rendering to mark rthe ones the user has selected by giving it a different background color
 
    Here is the end product of the `Selection` component after styling
-   ![selection_demo](selection-demo.gif)
+
+   <img src="/selection-demo.gif" width="250" height="250"/>
 
    DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
@@ -112,7 +113,9 @@ Component Tree:
 In retrospect, I feel that I should have used an API that directly generates the meal plan instead of generating the meal plan on FE. This way the code can be much cleaner and safer
 
 Final product:
-![full demo](full-demo.gif)
+
+<img src="/full-demo.gif" width="250" height="250"/>
+
 DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
 ### Unsolved problems and further development
