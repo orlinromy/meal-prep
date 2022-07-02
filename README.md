@@ -2,7 +2,7 @@
 
 ## Description
 
-A meal planner app, built based on Edamam API, in which user can get a list of recipe based on their diet and health.
+A meal planner app, built using React and Edamam API, in which user can get a list of recipe based on their diet and health. This project is created as part of General Assembly's Software Engineering Immersive program for its front-end development unit
 
 ### Technical Used
 
@@ -13,6 +13,18 @@ A meal planner app, built based on Edamam API, in which user can get a list of r
 - Tailwind CSS
 
 ### Wireframes
+
+Here are some wireframes that I first created when planning the app. Some feature, i.e. Save Modal and Save page are not implemented yet at the time of writing as I was overthinking my project which led to overcomplicating the project. There are some possibility that these features will be implemented in the future so do look out for it 😉
+
+![Home](wireframe-1.jpeg)
+
+![Create Plan](wireframe-2.jpeg)
+
+![Meal Planner](wireframe-3.jpeg)
+
+![Save Modal and Menu Slider](wireframe-4.jpeg)
+
+![Saved Plan](wireframe-5.jpeg)
 
 Component Tree:
 ![component tree](component-tree.jpeg)
@@ -29,23 +41,94 @@ Component Tree:
 
 ---
 
-## Planning and Development Process
+## Development Process
 
-A basic story of your planning and developing this project.
+0. Plan the whole thing, even though not everything gets implemented
+   Spent the weekends searching and comparing multiple recipe API, including API from Spoonacular, Open Food API, Edamam API, Tasty API, and many more. I decided to use Edamam API, particularly the Recipe endpoint, for its extensive list of diet and health labels, as well as the nutritional value data. Then, I created the wireframe to visualize the app and create a component tree.
 
-### Problem-Solving Strategy
+1. Fetching data from the API
+   This step includes creating an account to get an API key, trying out the API, and using `Fetch API` in the script to get the data. As there's a 10,000 API call limit per month for the free version of Edamam API, I had to emulate the API call using a dummy API and copy the data I got from trying out the API so that I can work on the data presentation without having to call the API multiple times.
 
-### Unsolved problems
+   Edamam API only returns 20 recipes per call, and to get another 20 recipes (so that there are more options to randomize from when generating lunch, dinner, snack, and teatime), I need to call the next page API specified in the data, as shown in the screenshot below
+   ![edamam-api-sample](edamam-api-sample.png).
+
+   In order to do this, I created another state called `nextAPI`, which is initialized with the object `{ none: "" }`, and use `useEffect` with the key as dependency.
+
+   Data fetch is handled by `fetchData()` function, which accepts 3 parameters:
+
+   - `url`: the API URL
+   - `mealType`: whether it's breakfast, lunch (which also includes dinner), or snack (includes teatime)
+   - `callback`: a function, which sets `isLoading` to `false` when the next data is fetched
+
+   When there are changes to the `nextAPI` key, the code block in useEffect is run, and the next 20 recipes are fetched.
+
+   You can refer to `/src/MealPlanner.js` on how this is implemented
+
+2. Create `Selection` component and `Create` page
+
+   The first component that I built was the `Selection` component, which is used later in the app to let users to choose from the available diet, health and allergy option. The data needed for this component are passed down from `Create` page, which includes:
+
+   - `title`: the title that describes the selection, which will be rendered by `SelectionLabel`
+   - `types`: options that user can choose from (e.g. dairy-free, sugar-concious, etc)
+   - `multiple`: indicator whether user can select multiple options (boolean: `true` if user can select multiple, `false` if user can only select 1)
+   - `id`: identifier of the `Selection` component
+   - `setData`: passed in function (a `setState`) that records user's selection
+   - `hasImage`: whether there are icons (boolean: `true` if there's icon together with the selection card, `false` if there's no icon)
+
+   There are 2 components under `Selection`:
+
+   - `SelectionLabel`: shows the title of the selection, e.g. "Diet" or "Health"
+   - `SelectionCardGroup`: a group of cards from which users can choose. This component renders `SelectableCard` component
+
+   In `SelectableCard`, all the data is rendered in a `Card` if `hasImage` is true, and a rounded `div` otherwise.
+
+   When a `SelectableCard` is clicked, it calls `handleClick` function defined in `SelectableCardGroup` where the selection logic resides. As we have a `setState` function propped down from `Create` page to the selection components as `setData`, we can call `props.setData` save the selected option to the state and trigger re-rendering to mark rthe ones the user has selected by giving it a different background color
+
+   Here is the end product of the `Selection` component after styling
+   ![selection_demo](selection-demo.gif)
+
+   DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
+
+3. Meal plan logic
+   Meal plan is generated in `MealPlan` component, with the data propped down from `MealPlanner` after getting all the data. Recipe selection is done by choosing a random index based on the meal type (breakfast, lunch, etc)
+
+4. Show meal plan in the DOM
+   The presentation is handled by `MealList` and `MealCard` component
+
+5. Show the recipe next to the meal plan
+   Double-clicking the meal in the planner will render the recipe beside the meal plan section. The presentation is handled by `RecipeContainer` and `NutritionTable` components.
+
+6. Get the ingredients of the meals, and feed it to `Groceries` component
+
+7. Show the groceries list, as well as whether the item can be found in the supermarket
+   To do this, I used the list of ingredients for all the recipes and used it as search term for the supermarket API. As I need to call the API multiple times based on the number of ingredients, `Promise.all` function is useful so that I can wait for all data to be fetched and render everything at the same time. This is done in `GroceryCard` component
+
+8. Create a navigation bar in the planner page
+   Created anchor so that user can jump to different section of the plan (e.g. Meal Plan Day 1-7 and Groceries) without having to scroll too much
+
+9. CSS and styling
+   After all components can be displayed, it's time to do styling. For this project, I am using Tailwind CSS to replace some inline styling (thanks to my classmates who recommended it) and Material UI to create some components like Accordion, Table, Card, Box and Grid. I am referring to [Wanderlog](wanderlog.com) for the meal planner design.
+
+In retrospect, I feel that I should have used an API that directly generates the meal plan instead of generating the meal plan on FE. This way the code can be much cleaner and safer
+
+Final product:
+![full demo](full-demo.gif)
+DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
+
+### Unsolved problems and further development
 
 1. Groceries
-   a. Use other platform's API so that the user can check if the item is available or cheaper elsewhere
-   b. Groceries need to be categorized so that `egg` and `egg yolk` shouldn't appear at the same time
-   c. Increase accuracy of the search result after getting data from the API by evaluating the search result and implement additional logic
-   d. Add groceries quantity based on the recipe
+
+   1. Use other platform's API so that the user can check if the item is available or cheaper elsewhere
+   2. Groceries need to be categorized so that `egg`, `egg yolk`, and `eggs` should appear as `egg`
+   3. Increase accuracy of the search result after getting data from the API by evaluating the search result and implement additional logic
+   4. Add groceries quantity based on the recipe
 
 2. Error pages are not implemented yet
 
-3. Add favorite recipe and plan. Also, save the current generated plan to local storage to avoid app crash
+3. Add favorite recipe and plan
+
+4. Search and change menu functionality
 
 ## APIs Used
 
@@ -53,11 +136,33 @@ For this project, I am using [Edamam API](https://developer.edamam.com/edamam-do
 
 API from a supermarket in Singapore is used to retrieve groceries data, whether or not the item can be found in the supermarket
 
-## Acknowledgments
+## Getting Started
+
+To use the app on your local environment:
+
+### Installation
+
+1. Clone this repo
+
+```
+git clone https://github.com/orlinromy/meal-prep.git
+```
+
+2. Install npm packages
+
+```
+npm install
+```
+
+3. Run the app
+
+```
+npm start
+```
 
 ## References
 
-- [Wanderlog](https://wanderlog.com/) for the planner design
+- [Wanderlog](https://wanderlog.com/) for the planner page design reference
 - [Meal icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/meal)
 - [Mixer animated icons created by Freepik - Flaticon](https://www.flaticon.com/free-animated-icons/mixer)
 - [Salad icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/salad)
@@ -71,3 +176,4 @@ API from a supermarket in Singapore is used to retrieve groceries data, whether 
 - [Forbidden icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/forbidden)
 - [Cooking animated icons created by Freepik - Flaticon](https://www.flaticon.com/free-animated-icons/cooking)
 - [How to Add Drag and Drop in React with React Beautiful DnD](https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/#step-3-saving-list-order-after-reordering-items-with-react-beautiful-dnd)
+- GA SEI 37 Instructional Team and fellow comrades
