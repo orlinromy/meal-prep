@@ -1,4 +1,4 @@
-# Prep-a-meal (WIP)
+# Prep-a-meal
 
 ## Description
 
@@ -86,7 +86,7 @@ Component Tree:
 
    Here is the end product of the `Selection` component after styling
 
-   <img src="/selection-demo.gif" width="80%" />
+   https://user-images.githubusercontent.com/41258857/176990278-1f33553f-e248-4459-abe5-8a29aa88c543.mp4
 
    DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
@@ -114,7 +114,7 @@ In retrospect, I feel that I should have used an API that directly generates the
 
 Final product:
 
-<img src="/full-demo.gif" width="80%" />
+https://user-images.githubusercontent.com/41258857/176990712-6aabe935-b6aa-4196-a15e-a09f04f7f229.mp4
 
 DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
