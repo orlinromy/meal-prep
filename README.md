@@ -27,7 +27,7 @@ Here are some wireframes that I first created when planning the app. Some featur
 ![Saved Plan](wireframe-5.jpg)
 
 Component Tree:
-![component tree](component-tree.jpg)
+![component tree](component-tree.jpeg)
 
 ### User Stories
 
@@ -86,7 +86,7 @@ Component Tree:
 
    Here is the end product of the `Selection` component after styling
 
-   <img src="/selection-demo.gif" width="250" height="250"/>
+   <img src="/selection-demo.gif" width="80%" />
 
    DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
@@ -114,7 +114,7 @@ In retrospect, I feel that I should have used an API that directly generates the
 
 Final product:
 
-<img src="/full-demo.gif" width="250" height="250"/>
+<img src="/full-demo.gif" width="80%" />
 
 DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
