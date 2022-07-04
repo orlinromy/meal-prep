@@ -114,7 +114,7 @@ In retrospect, I feel that I should have used an API that directly generates the
 
 Final product:
 
-https://user-images.githubusercontent.com/41258857/176990712-6aabe935-b6aa-4196-a15e-a09f04f7f229.mp4
+https://user-images.githubusercontent.com/41258857/177063569-1bc0e4d0-13a0-420b-93ab-e697839ba2cb.mp4
 
 DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
