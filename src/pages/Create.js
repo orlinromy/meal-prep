@@ -90,6 +90,7 @@ const Create = (props) => {
           title="Diet"
           types={diet}
           multiple={true}
+          multipleMax={2}
           id="diet"
           setData={setSelectedDiet}
           value={selectedDiet}
@@ -99,6 +100,7 @@ const Create = (props) => {
           title="Allergy"
           types={allergy}
           multiple={true}
+          multipleMax={3}
           id="allergy"
           setData={setSelectedAllergy}
           value={selectedAllergy}
@@ -108,6 +110,7 @@ const Create = (props) => {
           title="Health"
           types={health}
           multiple={true}
+          multipleMax={2}
           id="health"
           setData={setSelectedHealth}
           value={selectedHealth}

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Create from "./pages/Create";
 import NavBar from "./components/NavBar";
 import MealPlanner from "./pages/MealPlanner";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const [data, setData] = useState();
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<Create setData={setData} />} />
         <Route path="/planner" element={<MealPlanner data={data} />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </>
   );

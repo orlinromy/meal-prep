@@ -1,5 +1,4 @@
 import React from "react";
-import { Grid } from "@mui/material";
 import SelectableCard from "./SelectableCard";
 
 const SelectableCardGroup = (props) => {
@@ -9,9 +8,22 @@ const SelectableCardGroup = (props) => {
         props.setData([0]);
       } else {
         props.setData((prevState) => {
-          return prevState.includes(idx)
-            ? prevState.filter((el) => el !== idx)
-            : [...prevState.filter((el) => el !== 0), idx];
+          if (prevState.includes(idx)) {
+            return prevState.filter((el) => el !== idx);
+          } else {
+            if (prevState.length < props.multipleMax) {
+              return [...prevState.filter((el) => el !== 0), idx];
+            } else {
+              return prevState;
+            }
+          }
+
+          // return prevState.includes(idx)
+          //   ? prevState.filter((el) => el !== idx)
+          //   : [
+          //       ...prevState.filter((el) => el !== 0),
+          //       idx,
+          //     ];
         });
       }
     } else {

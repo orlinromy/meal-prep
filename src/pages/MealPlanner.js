@@ -47,32 +47,29 @@ const MealPlanner = (props) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
+      if (data.count === 0) {
+        navigate("/error");
+      }
       if (mealType === "breakfast") {
         setBreakfastMenu((prevState) => {
-          return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
+          return [...prevState, ...data.hits];
         });
       } else if (mealType === "lunch") {
         setLunchDinnerMenu((prevState) => {
-          return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
+          return [...prevState, ...data.hits];
         });
         if (data.count > 20) {
           setNextLunchAPI({
-            [mealType]:
-              // TODO: uncomment
-              data._links.next.href,
-            // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+            [mealType]: data._links.next.href,
           });
         }
       } else if (mealType === "snack") {
         setSnackMenu((prevState) => {
-          return [...prevState, ...data.hits]; // //TODO: uncomment ...data.hits
+          return [...prevState, ...data.hits];
         });
         if (data.count > 20) {
           setNextSnackAPI({
-            [mealType]:
-              //TODO: uncomment
-              data._links.next.href,
-            // "https://api.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+            [mealType]: data._links.next.href,
           });
         }
       }
@@ -96,6 +93,10 @@ const MealPlanner = (props) => {
             }
           }
         );
+      } else {
+        setIsLoading((prevState) => {
+          return [prevState[0], false];
+        });
       }
     }
   }, [Object.keys(nextLunchAPI)[0]]);
@@ -114,6 +115,10 @@ const MealPlanner = (props) => {
             }
           }
         );
+      } else {
+        setIsLoading((prevState) => {
+          return [prevState[0], false];
+        });
       }
     }
   }, [Object.keys(nextSnackAPI)[0]]);
@@ -125,12 +130,7 @@ const MealPlanner = (props) => {
       for (const mealType of mealTypes[props.data.meal[0]]) {
         const url = buildURL(props.data, mealType);
 
-        fetchData(
-          //TODO: uncomment
-          url,
-          // "https://apito.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
-          mealType
-        );
+        fetchData(url, mealType);
       }
     }
   }, []);
@@ -186,7 +186,3 @@ const MealPlanner = (props) => {
 };
 
 export default MealPlanner;
-
-// <div className="drop-shadow-xl grid place-items-center content-center w-5/12 h-5/12 rounded-2xl bg-white">
-//           <img src={mixer} className="w-5/12 h-5/12"></img>
-//         </div>

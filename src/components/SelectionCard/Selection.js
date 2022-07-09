@@ -5,10 +5,11 @@ import SelectableCardGroup from "./SelectableCardGroup";
 const Selection = (props) => {
   return (
     <div className="m-4">
-      <SelectionLabel text={props.title} />
+      <SelectionLabel text={props.title} multipleMax={props.multipleMax} />
       <SelectableCardGroup
         selection={props.types}
         multiple={props.multiple}
+        multipleMax={props.multipleMax}
         id={props.id}
         setData={props.setData}
         value={props.value}
