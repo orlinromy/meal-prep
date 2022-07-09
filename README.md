@@ -1,4 +1,4 @@
-# Prep-a-meal (WIP)
+# Prep-a-meal
 
 ## Description
 
@@ -27,7 +27,7 @@ Here are some wireframes that I first created when planning the app. Some featur
 ![Saved Plan](wireframe-5.jpg)
 
 Component Tree:
-![component tree](component-tree.jpg)
+![component tree](component-tree.jpeg)
 
 ### User Stories
 
@@ -86,7 +86,7 @@ Component Tree:
 
    Here is the end product of the `Selection` component after styling
 
-   <img src="/selection-demo.gif" width="250" height="250"/>
+   https://user-images.githubusercontent.com/41258857/176990278-1f33553f-e248-4459-abe5-8a29aa88c543.mp4
 
    DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
@@ -114,7 +114,7 @@ In retrospect, I feel that I should have used an API that directly generates the
 
 Final product:
 
-<img src="/full-demo.gif" width="250" height="250"/>
+https://user-images.githubusercontent.com/41258857/177063569-1bc0e4d0-13a0-420b-93ab-e697839ba2cb.mp4
 
 DISCLAIMER: the icons are not mine, please refer to Reference section for the attribution
 
