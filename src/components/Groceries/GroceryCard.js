@@ -50,7 +50,6 @@ const GroceryCard = (props) => {
         });
       })
     ).then(() => {
-      console.log("done");
       setIsLoading(false);
     });
   };

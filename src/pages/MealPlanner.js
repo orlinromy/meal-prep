@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { mealTypes, meals } from "../data/mealOptions";
+import { useNavigate } from "react-router-dom";
 // import { breakfast, lunchDinner, snack } from "../data/tempData";
 import MealPlan from "../components/MealPlan/MealPlan";
 import RecipeContainer from "../components/Recipe/RecipeContainer";
@@ -7,12 +8,14 @@ import MealPlanNavBar from "../components/MealPlanNavBar/MealPlanNavBar";
 import LoadingOverlay from "../components/MealPlan/LoadingOverlay";
 
 const MealPlanner = (props) => {
+  // console.log(props.data);
   const [breakfastMenu, setBreakfastMenu] = useState([]);
   const [lunchDinnerMenu, setLunchDinnerMenu] = useState([]);
   const [snackMenu, setSnackMenu] = useState([]);
   const [nextLunchAPI, setNextLunchAPI] = useState({ none: "" });
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
   const [isLoading, setIsLoading] = useState([true, true]);
+  let navigate = useNavigate();
 
   const [recipeData, setRecipeData] = useState(null);
 
@@ -116,20 +119,26 @@ const MealPlanner = (props) => {
   }, [Object.keys(nextSnackAPI)[0]]);
 
   useEffect(() => {
-    for (const mealType of mealTypes[props.data.meal[0]]) {
-      const url = buildURL(props.data, mealType);
+    if (props.data === undefined) {
+      navigate("/create");
+    } else {
+      for (const mealType of mealTypes[props.data.meal[0]]) {
+        const url = buildURL(props.data, mealType);
 
-      fetchData(
-        //TODO: uncomment
-        url,
-        // "https://apito.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
-        mealType
-      );
+        fetchData(
+          //TODO: uncomment
+          url,
+          // "https://apito.giphy.com/v1/gifs/random?api_key=bbXcJTy50Cy0hU0D8zqlvvUCeYAjjynH",
+          mealType
+        );
+      }
     }
   }, []);
 
   function renderPlan() {
-    if (props.data.meal[0] === 3) {
+    if (props.data === undefined) {
+      return;
+    } else if (props.data.meal[0] === 3) {
       return !isLoading[0] ? (
         <>
           <MealPlanNavBar

@@ -28,8 +28,8 @@ const MealCard = (props) => {
           className="rounded-lg"
         ></img>
         <Box display="flex" flexDirection="column">
-          <p style={{ marginBottom: "4px" }}>{props.data.recipe.label}</p>
-          <p style={{ fontSize: "10px", marginBottom: "4px" }}>
+          <p className="text-lg mb-2 ml-2 mt-2">{props.data.recipe.label}</p>
+          <p className="text-sm ml-2 mb-2">
             {props.data.recipe.dietLabels.join(", ")}
           </p>
         </Box>

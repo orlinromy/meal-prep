@@ -116,7 +116,10 @@ const MealPlan = (props) => {
               boxShadow: "rgba(100, 100, 111, 0.1) 20px 7px 29px 0px",
             }}
           >
-            <p className="text-2xl pt-4 pb-4">Meal Plan</p>
+            <p className="text-2xl pt-4 pb-2">Meal Plan</p>
+            <p className="text-md pb-4">
+              Pro tip: drag and drop to swap the meals
+            </p>
             <div
               className="test"
               style={{

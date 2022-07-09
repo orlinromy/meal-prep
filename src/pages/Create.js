@@ -41,84 +41,158 @@ const Create = (props) => {
     document.body.style.backgroundColor = "";
   }, []);
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="text-center ml-48 mr-48 mt-20 mb-20 bg-white p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
-    >
-      <h1 className="text-4xl m-6">Create your plan</h1>
-      <div className="m-6 mb-14">
-        <label htmlFor="days" className="text-2xl mb-4 mt-4">
-          How many days do you want to plan for this week:
-        </label>
-        <br />
-        <button
-          type="button"
-          onClick={handleDecrease}
-          className="bg-slate-200 rounded-full w-8 h-8 mr-2.5 text-2xl shadow"
-        >
-          -
-        </button>
-        <input
-          className="border-none bg-transparent text-center text-2xl"
-          id="days"
-          type="number"
-          min="1"
-          max="7"
-          step="1"
-          value={days}
-          onChange={handleDaysChange}
+    <div className="flex justify-around flex-column">
+      <form
+        onSubmit={handleSubmit}
+        className="text-center ml-48 mr-48 mt-20 mb-20 bg-white p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
+      >
+        <h1 className="text-4xl m-6">Create your plan</h1>
+        <div className="m-6 mb-14">
+          <label htmlFor="days" className="text-2xl mb-4 mt-4">
+            How many days do you want to plan for this week:
+          </label>
+          <br />
+          <button
+            type="button"
+            onClick={handleDecrease}
+            className="bg-slate-200 rounded-full w-8 h-8 mr-2.5 text-2xl shadow"
+          >
+            -
+          </button>
+          <input
+            className="border-none bg-transparent text-center text-2xl"
+            id="days"
+            type="number"
+            min="1"
+            max="7"
+            step="1"
+            value={days}
+            onChange={handleDaysChange}
+          />
+          <button
+            type="button"
+            className="bg-slate-200 rounded-full w-8 h-8 ml-2.5 text-2xl shadow"
+            onClick={handleIncrease}
+          >
+            +
+          </button>
+        </div>
+        <Selection
+          title="Meals per Day"
+          types={meal}
+          multiple={false}
+          id="meals"
+          setData={setSelectedMeal}
+          value={selectedMeal}
+          hasImage={true}
+        />
+        <Selection
+          title="Diet"
+          types={diet}
+          multiple={true}
+          id="diet"
+          setData={setSelectedDiet}
+          value={selectedDiet}
+          hasImage={true}
+        />
+        <Selection
+          title="Allergy"
+          types={allergy}
+          multiple={true}
+          id="allergy"
+          setData={setSelectedAllergy}
+          value={selectedAllergy}
+          hasImage={false}
+        />
+        <Selection
+          title="Health"
+          types={health}
+          multiple={true}
+          id="health"
+          setData={setSelectedHealth}
+          value={selectedHealth}
+          hasImage={false}
         />
         <button
-          type="button"
-          className="bg-slate-200 rounded-full w-8 h-8 ml-2.5 text-2xl shadow"
-          onClick={handleIncrease}
+          type="submit"
+          className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg my-4 hover:bg-[#517c74]"
         >
-          +
+          Submit
         </button>
-      </div>
-      <Selection
-        title="Meals per Day"
-        types={meal}
-        multiple={false}
-        id="meals"
-        setData={setSelectedMeal}
-        value={selectedMeal}
-        hasImage={true}
-      />
-      <Selection
-        title="Diet"
-        types={diet}
-        multiple={true}
-        id="diet"
-        setData={setSelectedDiet}
-        value={selectedDiet}
-        hasImage={true}
-      />
-      <Selection
-        title="Allergy"
-        types={allergy}
-        multiple={true}
-        id="allergy"
-        setData={setSelectedAllergy}
-        value={selectedAllergy}
-        hasImage={false}
-      />
-      <Selection
-        title="Health"
-        types={health}
-        multiple={true}
-        id="health"
-        setData={setSelectedHealth}
-        value={selectedHealth}
-        hasImage={false}
-      />
-      <button
-        type="submit"
-        className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg my-4 hover:bg-[#517c74]"
+      </form>
+      <strong className="text-center text-lg">Icon credit</strong>
+      <a
+        href="https://www.flaticon.com/free-icons/meal"
+        title="meal icons"
+        className="text-center"
       >
-        Submit
-      </button>
-    </form>
+        Meal icons created by Freepik - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/english-breakfast"
+        title="english breakfast icons"
+        className="text-center"
+      >
+        English breakfast icons created by Freepik - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/dinner"
+        title="dinner icons"
+        className="text-center"
+      >
+        Dinner icons created by Eucalyp - Flaticon
+      </a>
+
+      <a
+        href="https://www.flaticon.com/free-icons/forbidden"
+        title="forbidden icons"
+        className="text-center"
+      >
+        Forbidden icons created by Freepik - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/salad"
+        title="salad icons"
+        className="text-center"
+      >
+        Salad icons created by Freepik - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/fiber"
+        title="fiber icons"
+        className="text-center"
+      >
+        Fiber icons created by Flat Icons - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/whey"
+        title="whey icons"
+        className="text-center"
+      >
+        Whey icons created by Konkapp - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/carbs"
+        title="carbs icons"
+        className="text-center"
+      >
+        Carbs icons created by surang - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/no-fat"
+        title="no fat icons"
+        className="text-center"
+      >
+        No fat icons created by Freepik - Flaticon
+      </a>
+      <a
+        href="https://www.flaticon.com/free-icons/salt-free"
+        title="salt free icons"
+        className="text-center"
+      >
+        Salt free icons created by Freepik - Flaticon
+      </a>
+    </div>
   );
 };
 

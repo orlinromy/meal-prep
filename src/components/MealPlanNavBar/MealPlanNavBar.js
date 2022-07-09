@@ -21,6 +21,13 @@ const MealPlanNavBar = (props) => {
   }
   return (
     <div style={{ width: "13%", maxHeight: "96vh" }} className="m-0 border-r-2">
+      <a
+        className="mt-4 mb-4 text-sm"
+        href="https://www.flaticon.com/free-icons/meal"
+        title="meal icons"
+      >
+        Meal icons created by Freepik - Flaticon
+      </a>
       <p className="text-2xl mt-4 ml-2">Navigation</p>
       <Accordion className="bg-transparent shadow-none mb-0">
         <AccordionSummary
