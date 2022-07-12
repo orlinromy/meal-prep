@@ -20,7 +20,7 @@ const MealPlanner = (props) => {
   const [recipeData, setRecipeData] = useState(null);
 
   function buildURL(data, mealType) {
-    let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${REACT_APP_API_ID}&app_key=${REACT_APP_API_KEY}&q=`;
+    let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}&q=`;
     for (const type of data.diet) {
       if (type === "none") {
         url = url + "&diet=balanced";
