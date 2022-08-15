@@ -2,7 +2,9 @@
 
 ## Description
 
-A meal planner app, built using React and Edamam API, in which user can get a list of recipe based on their diet and health. This project is created as part of General Assembly's Software Engineering Immersive program for its front-end development unit
+A meal planner app, built using React and Edamam API, in which user can get a list of recipe based on their diet and health. This project is created as part of General Assembly's Software Engineering Immersive program for its front-end development unit.
+
+Try the app [here](https://prep-a-meal.netlify.app/)!
 
 ### Technical Used
 
