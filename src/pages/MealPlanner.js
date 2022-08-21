@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { mealTypes, meals } from "../data/mealOptions";
 import { useNavigate } from "react-router-dom";
-// import { breakfast, lunchDinner, snack } from "../data/tempData";
 import MealPlan from "../components/MealPlan/MealPlan";
 import RecipeContainer from "../components/Recipe/RecipeContainer";
 import MealPlanNavBar from "../components/MealPlanNavBar/MealPlanNavBar";
@@ -16,6 +15,7 @@ const MealPlanner = (props) => {
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
   const [isLoading, setIsLoading] = useState([true, true]);
   let navigate = useNavigate();
+  const fetchControllerRef = useRef(null);
 
   const [recipeData, setRecipeData] = useState(null);
 
@@ -44,7 +44,9 @@ const MealPlanner = (props) => {
 
   async function fetchData(url, mealType, callback) {
     try {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        signal: fetchControllerRef.current.signal,
+      });
       const data = await res.json();
       if (data.count === 0) {
         navigate("/error");
@@ -126,12 +128,14 @@ const MealPlanner = (props) => {
     if (props.data === undefined) {
       navigate("/create");
     } else {
+      fetchControllerRef.current = new AbortController();
       for (const mealType of mealTypes[props.data.meal[0]]) {
         const url = buildURL(props.data, mealType);
 
         fetchData(url, mealType);
       }
     }
+    return () => fetchControllerRef.current.abort();
   }, []);
 
   function renderPlan() {
