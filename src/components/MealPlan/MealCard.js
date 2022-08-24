@@ -11,7 +11,7 @@ const MealCard = (props) => {
     <Card
       variant="outlined"
       sx={{ height: "104px" }}
-      onDoubleClick={handleClick}
+      onClick={handleClick}
       className="drop-shadow-lg rounded-lg"
     >
       <Box

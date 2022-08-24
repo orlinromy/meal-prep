@@ -45,7 +45,7 @@ const RecipeContainer = (props) => {
     </div>
   ) : (
     <div className="text-slate-400 text-2xl text-center align-middle my-auto">
-      <p>Double-click on any meal to get the recipe</p>
+      <p>Click on any meal to get the recipe</p>
     </div>
   );
 };
