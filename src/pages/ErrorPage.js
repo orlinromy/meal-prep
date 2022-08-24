@@ -7,7 +7,7 @@ const ErrorPage = () => {
       <p className="text-3xl">
         Sorry, we can't find anything... try again maybe?
       </p>
-      <a href="/create">
+      <a href="/">
         <button className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-xl hover:bg-[#517c74] mt-8">
           Take me back
         </button>

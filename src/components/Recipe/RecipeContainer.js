@@ -10,6 +10,7 @@ const RecipeContainer = (props) => {
     >
       <img
         className="rounded-md mx-auto"
+        alt={props.recipeToShow.recipe.label}
         src={props.recipeToShow.recipe.images.REGULAR.url}
         style={{
           width: `${props.recipeToShow.recipe.images.REGULAR.width}`,
@@ -23,7 +24,7 @@ const RecipeContainer = (props) => {
         {Math.floor(props.recipeToShow.recipe.calories)} calories
       </p>
       <br />
-      <a href={props.recipeToShow.recipe.url} target="_blank">
+      <a href={props.recipeToShow.recipe.url} target="_blank" rel="noreferrer">
         <button className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg my-4 hover:bg-[#517c74]">
           Full Recipe
         </button>
