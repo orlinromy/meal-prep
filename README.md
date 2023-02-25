@@ -18,18 +18,18 @@ Try the app [here](https://prep-a-meal.netlify.app/)!
 
 Here are some wireframes that I first created when planning the app. Some feature, i.e. Save Modal and Save page are not implemented yet at the time of writing as I was overthinking my project which led to overcomplicating the project. There are some possibility that these features will be implemented in the future so do look out for it 😉
 
-![Home](wireframe-1.jpg)
+![Home](readme_files/wireframe-1.jpg)
 
-![Create Plan](wireframe-2.jpg)
+![Create Plan](readme_files/wireframe-2.jpg)
 
-![Meal Planner](wireframe-3.jpg)
+![Meal Planner](readme_files/wireframe-3.jpg)
 
-![Save Modal and Menu Slider](wireframe-4.jpg)
+![Save Modal and Menu Slider](readme_files/wireframe-4.jpg)
 
-![Saved Plan](wireframe-5.jpg)
+![Saved Plan](readme_files/wireframe-5.jpg)
 
 Component Tree:
-![component tree](component-tree.jpeg)
+![component tree](readme_files/component-tree.jpeg)
 
 ### User Stories
 
@@ -52,7 +52,7 @@ Component Tree:
    This step includes creating an account to get an API key, trying out the API, and using `Fetch API` in the script to get the data. As there's a 10,000 API call limit per month for the free version of Edamam API, I had to emulate the API call using a dummy API and copy the data I got from trying out the API so that I can work on the data presentation without having to call the API multiple times.
 
    Edamam API only returns 20 recipes per call, and to get another 20 recipes (so that there are more options to randomize from when generating lunch, dinner, snack, and teatime), I need to call the next page API specified in the data, as shown in the screenshot below
-   ![edamam-api-sample](edamam-api-sample.png)
+   ![edamam-api-sample](readme_files/edamam-api-sample.png)
 
    In order to do this, I created another state called `nextAPI`, which is initialized with the object `{ none: "" }`, and use `useEffect` with the key as dependency.
 
