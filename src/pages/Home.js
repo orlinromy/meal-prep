@@ -1,40 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import cooking from "../assets/cooking.gif";
+import InfoIcon from "@mui/icons-material/Info";
+import { Fab, Tooltip } from "@mui/material";
 
 const Home = () => {
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+
   useEffect(() => {
     document.body.style.backgroundColor = "white";
   }, []);
   return (
-    <div className="flex flex-column justify-between h-[85vh]">
-      <div className="flex flex-row">
-        <div className="ml-[12%] mt-[13%]">
-          <h1 className="text-5xl mb-[1.3%]">Welcome to Prep-a-Meal</h1>
-          <p className="text-lg">
-            Having a hell week ahead? Don't worry, we can help you decide what
-            to eat 😉
-          </p>
-          <NavLink to="/create">
-            <button className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg hover:bg-[#517c74] mt-[4%]">
-              Start Prepping
-            </button>
-          </NavLink>
-        </div>
-        <img src={cooking} className="mt-[20%] ml-[10%] w-56"></img>
-      </div>
-      <div className="flex flex-column text-center">
-        <strong>Icon Credit</strong>
-        <a href="https://www.flaticon.com/free-icons/meal" title="meal icons">
-          Meal icons created by Freepik - Flaticon
-        </a>
-        <a
-          href="https://www.flaticon.com/free-animated-icons/cooking"
-          title="cooking animated icons"
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 23,
+        padding: 24,
+        paddingTop: 48,
+      }}
+    >
+      <h1 className="text-5xl text-center">Welcome to Prep-a-Meal</h1>
+      <p className="text-lg text-center">
+        Having a hell week ahead? Don't worry, we can help you decide what to
+        eat 😉
+      </p>
+      <NavLink to="/create">
+        <button className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg hover:bg-[#517c74] mt-[4%]">
+          Start Prepping
+        </button>
+      </NavLink>
+      <img src={cooking} className="w-56" />
+      <Tooltip
+        disableHoverListener
+        arrow
+        open={isTooltipOpen}
+        onClose={() => setIsTooltipOpen(false)}
+        placement="top"
+        title={
+          <>
+            <strong>Icon Credit</strong>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/meal"
+              title="meal icons"
+            >
+              Meal icons created by Freepik - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-animated-icons/cooking"
+              title="cooking animated icons"
+            >
+              Cooking animated icons created by Freepik - Flaticon
+            </a>
+          </>
+        }
+      >
+        <Fab
+          size="small"
+          aria-label="Icon Info"
+          type="button"
+          sx={{
+            bgColor: "rgb(245, 245, 245)",
+            position: "fixed",
+            bottom: "3vh",
+            right: "3vh",
+          }}
+          onClick={() => setIsTooltipOpen((prev) => !prev)}
         >
-          Cooking animated icons created by Freepik - Flaticon
-        </a>
-      </div>
+          <InfoIcon />
+        </Fab>
+      </Tooltip>
     </div>
   );
 };
