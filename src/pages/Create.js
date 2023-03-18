@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Tooltip, Fab } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import Selection from "../components/SelectionCard/Selection";
 import { diet, meal, allergy, health } from "../data/mealOptions";
 
@@ -9,6 +11,7 @@ const Create = (props) => {
   const [selectedDiet, setSelectedDiet] = useState([0]);
   const [selectedAllergy, setSelectedAllergy] = useState([0]);
   const [selectedHealth, setSelectedHealth] = useState([0]);
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
   function handleDaysChange(e) {
     setDays(e.target.value === "" ? 0 : parseInt(e.target.value));
@@ -123,78 +126,115 @@ const Create = (props) => {
           Submit
         </button>
       </form>
-      <strong className="text-center text-lg">Icon credit</strong>
-      <a
-        href="https://www.flaticon.com/free-icons/meal"
-        title="meal icons"
-        className="text-center"
-      >
-        Meal icons created by Freepik - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/english-breakfast"
-        title="english breakfast icons"
-        className="text-center"
-      >
-        English breakfast icons created by Freepik - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/dinner"
-        title="dinner icons"
-        className="text-center"
-      >
-        Dinner icons created by Eucalyp - Flaticon
-      </a>
+      <Tooltip
+        disableHoverListener
+        arrow
+        open={isTooltipOpen}
+        onClose={() => setIsTooltipOpen(false)}
+        placement="top"
+        title={
+          <>
+            <strong className="text-center text-lg">Icon credit</strong>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/meal"
+              title="meal icons"
+              className="text-center"
+            >
+              Meal icons created by Freepik - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/english-breakfast"
+              title="english breakfast icons"
+              className="text-center"
+            >
+              English breakfast icons created by Freepik - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/dinner"
+              title="dinner icons"
+              className="text-center"
+            >
+              Dinner icons created by Eucalyp - Flaticon
+            </a>
+            <br />
 
-      <a
-        href="https://www.flaticon.com/free-icons/forbidden"
-        title="forbidden icons"
-        className="text-center"
+            <a
+              href="https://www.flaticon.com/free-icons/forbidden"
+              title="forbidden icons"
+              className="text-center"
+            >
+              Forbidden icons created by Freepik - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/salad"
+              title="salad icons"
+              className="text-center"
+            >
+              Salad icons created by Freepik - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/fiber"
+              title="fiber icons"
+              className="text-center"
+            >
+              Fiber icons created by Flat Icons - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/whey"
+              title="whey icons"
+              className="text-center"
+            >
+              Whey icons created by Konkapp - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/carbs"
+              title="carbs icons"
+              className="text-center"
+            >
+              Carbs icons created by surang - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/no-fat"
+              title="no fat icons"
+              className="text-center"
+            >
+              No fat icons created by Freepik - Flaticon
+            </a>
+            <br />
+            <a
+              href="https://www.flaticon.com/free-icons/salt-free"
+              title="salt free icons"
+              className="text-center"
+            >
+              Salt free icons created by Freepik - Flaticon
+            </a>
+            <br />
+          </>
+        }
       >
-        Forbidden icons created by Freepik - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/salad"
-        title="salad icons"
-        className="text-center"
-      >
-        Salad icons created by Freepik - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/fiber"
-        title="fiber icons"
-        className="text-center"
-      >
-        Fiber icons created by Flat Icons - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/whey"
-        title="whey icons"
-        className="text-center"
-      >
-        Whey icons created by Konkapp - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/carbs"
-        title="carbs icons"
-        className="text-center"
-      >
-        Carbs icons created by surang - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/no-fat"
-        title="no fat icons"
-        className="text-center"
-      >
-        No fat icons created by Freepik - Flaticon
-      </a>
-      <a
-        href="https://www.flaticon.com/free-icons/salt-free"
-        title="salt free icons"
-        className="text-center"
-      >
-        Salt free icons created by Freepik - Flaticon
-      </a>
+        <Fab
+          size="small"
+          aria-label="Icon Info"
+          type="button"
+          sx={{
+            bgColor: "rgb(245, 245, 245)",
+            position: "fixed",
+            bottom: "3vh",
+            right: "3vh",
+          }}
+          onClick={() => setIsTooltipOpen((prev) => !prev)}
+        >
+          <InfoIcon />
+        </Fab>
+      </Tooltip>
     </div>
   );
 };
