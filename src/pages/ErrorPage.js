@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div className="flex flex-column justify-center items-center text-center h-[80vh] overflow-hidden">
+    <div className="flex flex-column justify-center items-center text-center h-[80vh] overflow-hidden px-3">
       <p className="text-7xl mb-4">🤯</p>
       <p className="text-3xl">
         Sorry, we can't find anything... try again maybe?
