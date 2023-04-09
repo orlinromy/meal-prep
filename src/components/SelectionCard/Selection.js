@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import SelectionLabel from "./SelectionLabel";
 import SelectableCardGroup from "./SelectableCardGroup";
 
 const Selection = (props) => {
   return (
-    <div className="m-4">
+    <div>
       <SelectionLabel text={props.title} multipleMax={props.multipleMax} />
       <SelectableCardGroup
         selection={props.types}
@@ -19,4 +19,4 @@ const Selection = (props) => {
   );
 };
 
-export default Selection;
+export default memo(Selection);

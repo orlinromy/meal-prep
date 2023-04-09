@@ -25,7 +25,7 @@ const GroceryCard = (props) => {
             return new Promise(() => {
               response.json().then((data) => {
                 if (data.code !== 200) {
-                  console.log("return code: ", data.code);
+                  console.error("return code: ", data.code);
                 } else if (
                   data.data.page.layouts[2].value.collection.count > 0
                 ) {
