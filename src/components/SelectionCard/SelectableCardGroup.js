@@ -17,13 +17,6 @@ const SelectableCardGroup = (props) => {
               return prevState;
             }
           }
-
-          // return prevState.includes(idx)
-          //   ? prevState.filter((el) => el !== idx)
-          //   : [
-          //       ...prevState.filter((el) => el !== 0),
-          //       idx,
-          //     ];
         });
       }
     } else {
@@ -42,7 +35,7 @@ const SelectableCardGroup = (props) => {
           }}
           hasImage={props.hasImage}
           isActive={props.value.includes(idx)}
-        ></SelectableCard>
+        />
       ))}
     </div>
   ) : (
@@ -56,7 +49,7 @@ const SelectableCardGroup = (props) => {
           }}
           hasImage={props.hasImage}
           isActive={props.value.includes(idx)}
-        ></SelectableCard>
+        />
       ))}
     </div>
   );
