@@ -47,11 +47,11 @@ const Create = (props) => {
     <div className="flex justify-around flex-column">
       <form
         onSubmit={handleSubmit}
-        className="text-center ml-48 mr-48 mt-20 mb-20 bg-white p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
+        className="text-center mx-[5%] my-[8%] bg-white p-2 sm:p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
       >
-        <h1 className="text-4xl m-6">Create your plan</h1>
+        <h1 className="text-3xl sm:text-4xl my-6">Create your plan</h1>
         <div className="m-6 mb-14">
-          <label htmlFor="days" className="text-2xl mb-4 mt-4">
+          <label htmlFor="days" className="text-xl mb-4 mt-4">
             How many days do you want to plan for this week:
           </label>
           <br />
@@ -121,11 +121,13 @@ const Create = (props) => {
         />
         <button
           type="submit"
-          className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg my-4 hover:bg-[#517c74]"
+          className="w-[80%] max-w-[200px] bg-[#659B91] text-white py-2.5 rounded-xl text-lg my-5 hover:bg-[#517c74]"
         >
           Submit
         </button>
       </form>
+
+      {/* TODO: refactor - separate this to its own component, also used in Home */}
       <Tooltip
         disableHoverListener
         arrow
