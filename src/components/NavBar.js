@@ -15,6 +15,7 @@ const NavBar = () => {
           }}
           src={icon}
           className="cursor-pointer"
+          alt="prep-a-meal"
         />
         <NavLink to="/">Home</NavLink>
         <NavLink to="/create">Create</NavLink>
