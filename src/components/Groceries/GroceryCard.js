@@ -59,8 +59,8 @@ const GroceryCard = (props) => {
   }, [props.groceries]);
 
   return (
-    <>
-      <h1 id="groceries" className="text-2xl pt-[60px]">
+    <div>
+      <h1 id="groceries" className="text-2xl">
         Groceries for the week
       </h1>
       {isLoading ? (
@@ -68,39 +68,53 @@ const GroceryCard = (props) => {
       ) : (
         <>
           {fpItem.map((item) => (
-            <Grid container direction="row" alignItems="center">
-              <Checkbox></Checkbox>
-              <Accordion className="bg-transparent shadow-none mb-0 w-[450px]">
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <p>{item.item}</p>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Card className="py-2 px-4 drop-shadow-xl rounded-lg">
-                    <p>Found {item.item} in Fairprice:</p>
-                    <div className="flex flex-row">
-                      <img
-                        src={item.data.images[0]}
-                        style={{ width: "100px" }}
-                        className="rounded-md"
-                      />
-                      <div className="flex flex-column">
-                        <p className="p-2">{item.data.name}</p>
-                        <a
-                          className="p-2 text-blue-800"
-                          href={`https://www.fairprice.com.sg/search?query=${item.item}`}
-                          target="_blank"
-                        >
-                          Find more
-                        </a>
-                      </div>
-                    </div>
-                  </Card>
-                </AccordionDetails>
-              </Accordion>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justifyContent="flex-start"
+            >
+              <Grid item xs={1}>
+                <Checkbox></Checkbox>
+              </Grid>
+              <Grid item xs={11}>
+                <Accordion className="bg-transparent shadow-none mb-0 w-full">
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <p>{item.item}</p>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <a
+                      href={`https://www.fairprice.com.sg/product/${item.data.slug}`}
+                      target="_blank"
+                    >
+                      <Card className="py-2 px-4 drop-shadow-xl rounded-lg">
+                        <p>Found {item.item} in Fairprice:</p>
+                        <div className="flex flex-row">
+                          <img
+                            src={item.data.images[0]}
+                            style={{ width: "100px" }}
+                            className="rounded-md"
+                          />
+                          <div className="flex flex-column">
+                            <p className="p-2">{item.data.name}</p>
+                            <a
+                              className="p-2 text-blue-800"
+                              href={`https://www.fairprice.com.sg/search?query=${item.item}`}
+                              target="_blank"
+                            >
+                              Find more
+                            </a>
+                          </div>
+                        </div>
+                      </Card>
+                    </a>
+                  </AccordionDetails>
+                </Accordion>
+              </Grid>
             </Grid>
           ))}
           {itemNotFound.map((item) => (
@@ -151,7 +165,7 @@ const GroceryCard = (props) => {
           ))}
         </>
       )}
-    </>
+    </div>
   );
 };
 

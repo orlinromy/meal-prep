@@ -36,11 +36,7 @@ const Groceries = (props) => {
     }
   }, [props.groceries]);
 
-  return (
-    <div>
-      <GroceryCard groceries={allGroceries} />
-    </div>
-  );
+  return <GroceryCard groceries={allGroceries} />;
 };
 
 export default Groceries;

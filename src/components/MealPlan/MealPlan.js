@@ -104,7 +104,7 @@ const MealPlan = (props) => {
             className={
               "overallDiv " +
               styles.overallDiv +
-              " border-r-2 pr-8 pt-4 border-b-2"
+              " border-r-2 px-8 pt-4 border-b-2"
             }
             style={{
               display: "flex",
@@ -112,40 +112,43 @@ const MealPlan = (props) => {
               maxHeight: "96vh",
               overflowY: "scroll",
               boxShadow: "rgba(100, 100, 111, 0.1) 20px 7px 29px 0px",
+              gap: 50,
             }}
           >
-            <p className="text-2xl pt-4 pb-2">Meal Plan</p>
-            <p className="text-md pb-4">
-              Pro tip: drag and drop to swap the meals
-            </p>
-            <div
-              className="test"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-              }}
-            >
-              <table>
-                <tbody>{mealLabel().map((el) => el)}</tbody>
-              </table>
-              <table>
-                <DragDropContext onDragEnd={handleDragEnd}>
-                  <Droppable droppableId="mealCards">
-                    {(provided) => (
-                      <tbody
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                      >
-                        {mealComponent().map((x) => x)}
-                        {provided.placeholder}
-                      </tbody>
-                    )}
-                  </Droppable>
-                </DragDropContext>
-              </table>
+            <div>
+              <p className="text-2xl pt-4 pb-2">Meal Plan</p>
+              <p className="text-md pb-4">
+                Pro tip: drag and drop to swap the meals
+              </p>
+              <div
+                className="test"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                }}
+              >
+                <table>
+                  <tbody>{mealLabel().map((el) => el)}</tbody>
+                </table>
+                <table>
+                  <DragDropContext onDragEnd={handleDragEnd}>
+                    <Droppable droppableId="mealCards">
+                      {(provided) => (
+                        <tbody
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                        >
+                          {mealComponent().map((x) => x)}
+                          {provided.placeholder}
+                        </tbody>
+                      )}
+                    </Droppable>
+                  </DragDropContext>
+                </table>
+              </div>
             </div>
-            <Groceries groceries={plan}></Groceries>
+            <Groceries groceries={plan} />
           </div>
         </>
       )}
