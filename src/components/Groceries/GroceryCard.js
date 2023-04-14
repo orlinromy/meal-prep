@@ -98,6 +98,7 @@ const GroceryCard = (props) => {
                             src={item.data.images[0]}
                             style={{ width: "100px" }}
                             className="rounded-md"
+                            loading="lazy"
                           />
                           <div className="flex flex-column">
                             <p className="p-2">{item.data.name}</p>

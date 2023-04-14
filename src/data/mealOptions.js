@@ -1,12 +1,12 @@
-import salads from "../assets/salads.png";
-import breakfast from "../assets/english-breakfast.png";
-import dinner from "../assets/dinner.png";
-import protein from "../assets/protein.png";
-import fiber from "../assets/fiber.png";
-import lowFat from "../assets/low-fat.png";
-import lowCarb from "../assets/low-carb.png";
-import lowSodium from "../assets/salt-free.png";
-import forbidden from "../assets/forbidden.png";
+import salads from "../assets/salads.webp";
+import breakfast from "../assets/english-breakfast.webp";
+import dinner from "../assets/dinner.webp";
+import protein from "../assets/protein.webp";
+import fiber from "../assets/fiber.webp";
+import lowFat from "../assets/low-fat.webp";
+import lowCarb from "../assets/low-carb.webp";
+import lowSodium from "../assets/salt-free.webp";
+import forbidden from "../assets/forbidden.webp";
 
 const diet = [
   {

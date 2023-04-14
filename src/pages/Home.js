@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import cooking from "../assets/cooking.gif";
-import InfoIcon from "@mui/icons-material/Info";
-import { Fab, Tooltip } from "@mui/material";
+import { IconCredit } from "../components/IconCredit";
+
+const icons = [
+  {
+    link: "https://www.flaticon.com/free-icons/meal",
+    title: "meal icons",
+    label: "Meal icons created by Freepik - Flaticon",
+  },
+  {
+    link: "https://www.flaticon.com/free-animated-icons/cooking",
+    title: "cooking animated icons",
+    label: "Cooking animated icons created by Freepik - Flaticon",
+  },
+];
 
 const Home = () => {
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-
   useEffect(() => {
     document.body.style.backgroundColor = "white";
   }, []);
@@ -31,48 +41,8 @@ const Home = () => {
           Start Prepping
         </button>
       </NavLink>
-      <img src={cooking} className="w-56" />
-      <Tooltip
-        disableHoverListener
-        arrow
-        open={isTooltipOpen}
-        onClose={() => setIsTooltipOpen(false)}
-        placement="top"
-        title={
-          <>
-            <strong>Icon Credit</strong>
-            <br />
-            <a
-              href="https://www.flaticon.com/free-icons/meal"
-              title="meal icons"
-            >
-              Meal icons created by Freepik - Flaticon
-            </a>
-            <br />
-            <a
-              href="https://www.flaticon.com/free-animated-icons/cooking"
-              title="cooking animated icons"
-            >
-              Cooking animated icons created by Freepik - Flaticon
-            </a>
-          </>
-        }
-      >
-        <Fab
-          size="small"
-          aria-label="Icon Info"
-          type="button"
-          sx={{
-            bgColor: "rgb(245, 245, 245)",
-            position: "fixed",
-            bottom: "3vh",
-            right: "3vh",
-          }}
-          onClick={() => setIsTooltipOpen((prev) => !prev)}
-        >
-          <InfoIcon />
-        </Fab>
-      </Tooltip>
+      <img src={cooking} className="w-56" loading="lazy" />
+      <IconCredit icons={icons} />
     </div>
   );
 };

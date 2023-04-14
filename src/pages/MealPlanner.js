@@ -8,7 +8,8 @@ import LoadingOverlay from "../components/MealPlan/LoadingOverlay";
 import { useMediaQuery } from "@mui/material";
 
 const MealPlanner = (props) => {
-  const showFull = useMediaQuery("(min-width:600px)");
+  const showRecipe = useMediaQuery("(min-width:640px)");
+  const showNavigation = useMediaQuery("(min-width:1024px");
   const [breakfastMenu, setBreakfastMenu] = useState([]);
   const [lunchDinnerMenu, setLunchDinnerMenu] = useState([]);
   const [snackMenu, setSnackMenu] = useState([]);
@@ -153,7 +154,7 @@ const MealPlanner = (props) => {
 
     return (
       <>
-        {showFull && (
+        {showNavigation && (
           <MealPlanNavBar
             days={props.data.days}
             meals={meals[props.data.meal[0]]}
@@ -167,7 +168,7 @@ const MealPlanner = (props) => {
           days={props.data.days}
           doubleClicked={setRecipeData}
         />
-        {showFull && <RecipeContainer recipeToShow={recipeData} />}
+        {showRecipe && <RecipeContainer recipeToShow={recipeData} />}
       </>
     );
   }

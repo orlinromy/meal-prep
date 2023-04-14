@@ -26,6 +26,7 @@ const SelectableCard = (props) => {
             className="m-4 w-16 sm:w-24"
             src={props.type.image}
             alt={props.type.type}
+            loading="lazy"
           />
           <p className="mb-4 mx-2 text-center">{props.type.type}</p>
         </Grid>

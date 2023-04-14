@@ -5,13 +5,13 @@ import styles from "../../styles/RecipeContainer.module.css";
 const RecipeContainer = (props) => {
   return props.recipeToShow ? (
     <div
-      style={{ width: "40%", maxHeight: "96vh", overflowY: "scroll" }}
-      className={`pt-8 pr-4 text-center ${styles.recipeCont}`}
+      className={`pt-8 px-4 text-center ${styles.recipeCont} grow-[4] max-w-[700px] max-h-[96vh] overflow-y-auto`}
     >
       <img
         className="rounded-md mx-auto"
         alt={props.recipeToShow.recipe.label}
         src={props.recipeToShow.recipe.images.REGULAR.url}
+        loading="lazy"
         style={{
           width: `${props.recipeToShow.recipe.images.REGULAR.width}`,
           height: `${props.recipeToShow.recipe.images.REGULAR.height}`,
@@ -45,7 +45,7 @@ const RecipeContainer = (props) => {
       <NutritionTable nutrients={props.recipeToShow.recipe.digest} />
     </div>
   ) : (
-    <div className="text-slate-400 text-2xl text-center align-middle my-auto">
+    <div className="text-slate-400 text-2xl text-center align-middle my-auto grow-[4] max-w-[700px]">
       <p>Click on any meal to get the recipe</p>
     </div>
   );

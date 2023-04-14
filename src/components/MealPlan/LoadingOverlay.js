@@ -15,7 +15,7 @@ const LoadingOverlay = () => {
           transform: "translateY(-50%)",
         }}
       >
-        <img src={mixer} className="w-8/12" />
+        <img src={mixer} className="w-8/12" loading="lazy" />
         <p className="text-2xl mb-8">Mixing some stuff...</p>
       </div>
       <Tooltip

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import icon from "../assets/food-tray.png";
+import icon from "../assets/food-tray.webp";
 
 const NavBar = () => {
   let navigate = useNavigate();
@@ -10,6 +10,7 @@ const NavBar = () => {
       <nav className="flex items-center ml-7 my-3 gap-9">
         <img
           style={{ width: "50px", height: "50px" }}
+          loading="lazy"
           onClick={() => {
             navigate("/");
           }}

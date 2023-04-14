@@ -24,10 +24,13 @@ const MealCard = (props) => {
           src={props.data.recipe.images.THUMBNAIL.url}
           alt={props.data.recipe.label}
           className="rounded-lg"
-        ></img>
+          loading="lazy"
+        />
         <Box display="flex" flexDirection="column">
-          <p className="text-lg mb-2 ml-2 mt-2">{props.data.recipe.label}</p>
-          <p className="text-sm ml-2 mb-2">
+          <p className="text-mb sm:text-lg mb-2 ml-2 mt-2">
+            {props.data.recipe.label}
+          </p>
+          <p className="text-xs sm:text-sm ml-2 mb-2">
             {props.data.recipe.dietLabels.join(", ")}
           </p>
         </Box>
