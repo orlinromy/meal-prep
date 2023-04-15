@@ -27,7 +27,7 @@ const MealCard = (props) => {
           loading="lazy"
         />
         <Box display="flex" flexDirection="column">
-          <p className="text-mb sm:text-lg mb-2 ml-2 mt-2">
+          <p className="text-md sm:text-lg mb-2 ml-2 mt-2">
             {props.data.recipe.label}
           </p>
           <p className="text-xs sm:text-sm ml-2 mb-2">
