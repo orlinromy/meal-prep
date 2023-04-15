@@ -104,7 +104,7 @@ const MealPlan = (props) => {
             className={
               "overallDiv " +
               styles.overallDiv +
-              " border-r-2 px-3 sm:px-8 pt-2 sm:pt-4 border-b-2 flex flex-col max-h-[96vh] min-w-[40%] overflow-y-auto shadow-[20px_7px_29px_0_rgba(100,100,111,0.1)] gap-[50px] grow-[5]"
+              " border-r-2 px-3 sm:px-8 pt-2 sm:pt-4 border-b-2 flex flex-col max-h-[91.7vh] md:min-w-[55%] lg:min-w-[45%] overflow-y-auto shadow-[20px_7px_29px_0_rgba(100,100,111,0.1)] gap-[50px] grow-[5]"
             }
             style={{
               boxShadow: "rgba(100, 100, 111, 0.1) 20px 7px 29px 0px",

@@ -7,7 +7,7 @@ const RecipeContainer = (props) => {
 
   return recipeToShow ? (
     <div
-      className={`pt-8 px-4 text-center ${styles.recipeCont} grow-[4] max-w-[700px] max-h-[96vh] overflow-y-auto`}
+      className={`pt-8 px-4 text-center ${styles.recipeCont} grow-[4] max-h-[91.7vh] overflow-y-auto `}
     >
       <img
         className="rounded-md mx-auto"
@@ -47,7 +47,7 @@ const RecipeContainer = (props) => {
       <NutritionTable nutrients={recipeToShow.recipe.digest} />
     </div>
   ) : (
-    <div className="text-slate-400 text-2xl text-center align-middle my-auto grow-[4] max-w-[700px]">
+    <div className="text-slate-400 text-2xl text-center align-middle my-auto grow-[4]">
       <p>Click on any meal to get the recipe</p>
     </div>
   );

@@ -20,7 +20,7 @@ const MealPlanNavBar = (props) => {
     return el;
   }
   return (
-    <div className="m-0 border-r-2 grow-[1] max-h-[96vh] min-w-[180px]">
+    <div className="m-0 border-r-2 grow-[1] max-h-[91.7vh] min-w-[200px]">
       <p className="text-2xl mt-4 ml-2">Navigation</p>
       <Accordion className="bg-transparent shadow-none mb-0">
         <AccordionSummary
