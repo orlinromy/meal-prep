@@ -26,22 +26,22 @@ const GroceryCard = (props) => {
               response.json().then((data) => {
                 if (data.code !== 200) {
                   console.error("return code: ", data.code);
-                } else if (
-                  data.data.page.layouts[2].value.collection.count > 0
-                ) {
-                  setFpItem((prevState) => [
-                    ...prevState,
-                    {
-                      item: item,
-                      data: data.data.page.layouts[2].value.collection
-                        .product[0],
-                    },
-                  ]);
-                  setItemNotFound((prevState) => {
-                    return prevState.filter(
-                      (data, index) => index !== prevState.indexOf(item)
-                    );
-                  });
+                } else if (Object.keys(data.data).includes("page")) {
+                  if (data.data.page.layouts[2].value.collection.count > 0) {
+                    setFpItem((prevState) => [
+                      ...prevState,
+                      {
+                        item: item,
+                        data: data.data.page.layouts[2].value.collection
+                          .product[0],
+                      },
+                    ]);
+                    setItemNotFound((prevState) => {
+                      return prevState.filter(
+                        (data, index) => index !== prevState.indexOf(item)
+                      );
+                    });
+                  }
                 }
                 resolve();
               });
