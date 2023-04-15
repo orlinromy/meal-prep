@@ -3,28 +3,30 @@ import NutritionTable from "./NutritionTable";
 import styles from "../../styles/RecipeContainer.module.css";
 
 const RecipeContainer = (props) => {
-  return props.recipeToShow ? (
+  const { recipeToShow } = props;
+
+  return recipeToShow ? (
     <div
       className={`pt-8 px-4 text-center ${styles.recipeCont} grow-[4] max-w-[700px] max-h-[96vh] overflow-y-auto`}
     >
       <img
         className="rounded-md mx-auto"
-        alt={props.recipeToShow.recipe.label}
-        src={props.recipeToShow.recipe.images.REGULAR.url}
+        alt={recipeToShow.recipe.label}
+        src={recipeToShow.recipe.images.REGULAR.url}
         loading="lazy"
         style={{
-          width: `${props.recipeToShow.recipe.images.REGULAR.width}`,
-          height: `${props.recipeToShow.recipe.images.REGULAR.height}`,
+          width: `${recipeToShow.recipe.images.REGULAR.width}`,
+          height: `${recipeToShow.recipe.images.REGULAR.height}`,
         }}
       ></img>
-      <h2 className="text-4xl mt-4 mb-2">{props.recipeToShow.recipe.label}</h2>
+      <h2 className="text-4xl mt-4 mb-2">{recipeToShow.recipe.label}</h2>
       <p className="text-lg">
-        {props.recipeToShow.recipe.yield}{" "}
-        {props.recipeToShow.recipe.yield > 1 ? "servings" : "serving"} |{" "}
-        {Math.floor(props.recipeToShow.recipe.calories)} calories
+        {recipeToShow.recipe.yield}{" "}
+        {recipeToShow.recipe.yield > 1 ? "servings" : "serving"} |{" "}
+        {Math.floor(recipeToShow.recipe.calories)} calories
       </p>
       <br />
-      <a href={props.recipeToShow.recipe.url} target="_blank" rel="noreferrer">
+      <a href={recipeToShow.recipe.url} target="_blank" rel="noreferrer">
         <button className="w-60 bg-[#659B91] text-white p-2.5 rounded-xl text-lg my-4 hover:bg-[#517c74]">
           Full Recipe
         </button>
@@ -32,17 +34,17 @@ const RecipeContainer = (props) => {
 
       <p className="text-lg text-left">Ingredients: </p>
       <ul className="list-disc pl-4 text-left">
-        {props.recipeToShow.recipe.ingredientLines.map((ingredient) => (
+        {recipeToShow.recipe.ingredientLines.map((ingredient) => (
           <li>{ingredient}</li>
         ))}
       </ul>
 
       <p className="text-lg text-left mt-4">Health Labels: </p>
       <p className="text-md text-left mb-4">
-        {props.recipeToShow.recipe.healthLabels.join(", ")}
+        {recipeToShow.recipe.healthLabels.join(", ")}
       </p>
       <p className="text-lg text-left mt-4 mb-2">Nutrition</p>
-      <NutritionTable nutrients={props.recipeToShow.recipe.digest} />
+      <NutritionTable nutrients={recipeToShow.recipe.digest} />
     </div>
   ) : (
     <div className="text-slate-400 text-2xl text-center align-middle my-auto grow-[4] max-w-[700px]">
