@@ -173,7 +173,7 @@ const MealPlanner = (props) => {
         ) : (
           <SwipeableDrawer
             anchor="bottom"
-            open={recipeData}
+            open={Boolean(recipeData)}
             onClose={() => {
               setRecipeData(null);
             }}
