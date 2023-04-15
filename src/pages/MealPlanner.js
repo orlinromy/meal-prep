@@ -5,7 +5,7 @@ import MealPlan from "../components/MealPlan/MealPlan";
 import RecipeContainer from "../components/Recipe/RecipeContainer";
 import MealPlanNavBar from "../components/MealPlanNavBar/MealPlanNavBar";
 import LoadingOverlay from "../components/MealPlan/LoadingOverlay";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, SwipeableDrawer } from "@mui/material";
 
 const MealPlanner = (props) => {
   const showRecipe = useMediaQuery("(min-width:640px)");
@@ -168,7 +168,26 @@ const MealPlanner = (props) => {
           days={props.data.days}
           doubleClicked={setRecipeData}
         />
-        {showRecipe && <RecipeContainer recipeToShow={recipeData} />}
+        {showRecipe ? (
+          <RecipeContainer recipeToShow={recipeData} />
+        ) : (
+          <SwipeableDrawer
+            anchor="bottom"
+            open={recipeData}
+            onClose={() => {
+              setRecipeData(null);
+            }}
+            PaperProps={{
+              elevation: 0,
+              style: {
+                borderRadius: "20px 20px 0 0",
+              },
+            }}
+            sx={{ mt: 1 }}
+          >
+            <RecipeContainer recipeToShow={recipeData} />
+          </SwipeableDrawer>
+        )}
       </>
     );
   }

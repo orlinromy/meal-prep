@@ -98,7 +98,7 @@ const Create = (props) => {
     <div className="flex justify-around flex-column">
       <form
         onSubmit={handleSubmit}
-        className="text-center mx-[5%] my-[8%] bg-white p-2 sm:p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
+        className="text-center mx-[5%] my-[8%] bg-white p-1 sm:p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
       >
         <h1 className="text-3xl sm:text-4xl my-6">Create your plan</h1>
         <div className="m-6 mb-14">
