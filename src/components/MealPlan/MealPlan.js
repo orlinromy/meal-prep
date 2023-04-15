@@ -5,41 +5,50 @@ import MealList from "./MealList";
 import styles from "../../styles/MealPlan.module.css";
 
 const MealPlan = (props) => {
+  const {
+    breakfastMenu,
+    lunchDinnerMenu,
+    snackMenu,
+    meals,
+    days,
+    doubleClicked,
+  } = props;
+
   const [plan, setPlan] = useState([]);
 
   useEffect(() => {
     if (plan.length === 0) {
-      if (props.meals.length === 3) {
-        for (let i = 0; i < props.days; i++) {
+      if (meals.length === 3) {
+        for (let i = 0; i < days; i++) {
           const breakfastIndex = Math.floor(
-            Math.random() * props.breakfastMenu.length
+            Math.random() * breakfastMenu.length
           );
           const dinnerIndex = Math.floor(
-            Math.random() * props.lunchDinnerMenu.length
+            Math.random() * lunchDinnerMenu.length
           );
           setPlan((prevState) => [
             ...prevState,
-            props.breakfastMenu[breakfastIndex],
-            props.lunchDinnerMenu[breakfastIndex],
-            props.lunchDinnerMenu[dinnerIndex],
+            breakfastMenu[breakfastIndex],
+            lunchDinnerMenu[breakfastIndex],
+            lunchDinnerMenu[dinnerIndex],
           ]);
         }
-      } else if (props.meals.length === 5) {
-        for (let i = 0; i < props.days; i++) {
+      } else if (meals.length === 5) {
+        for (let i = 0; i < days; i++) {
           const breakfastIndex = Math.floor(
-            Math.random() * props.breakfastMenu.length
+            Math.random() * breakfastMenu.length
           );
           const dinnerIndex = Math.floor(
-            Math.random() * props.lunchDinnerMenu.length
+            Math.random() * lunchDinnerMenu.length
           );
-          const snackIndex = Math.floor(Math.random() * props.snackMenu.length);
+          const snackIndex = Math.floor(Math.random() * snackMenu.length);
           setPlan((prevState) => [
             ...prevState,
-            props.breakfastMenu[breakfastIndex],
-            props.lunchDinnerMenu[breakfastIndex],
-            props.lunchDinnerMenu[dinnerIndex],
-            props.snackMenu[snackIndex],
-            props.snackMenu[breakfastIndex],
+            breakfastMenu[breakfastIndex],
+            lunchDinnerMenu[breakfastIndex],
+            lunchDinnerMenu[dinnerIndex],
+            snackMenu[snackIndex],
+            snackMenu[breakfastIndex],
           ]);
         }
       }
@@ -59,13 +68,13 @@ const MealPlan = (props) => {
 
   function mealComponent() {
     const el = [];
-    for (let i = 0; i < props.days; i++) {
+    for (let i = 0; i < days; i++) {
       el.push(
         <MealList
           plan={plan}
           i={i}
-          meal={props.meals.length}
-          doubleClicked={props.doubleClicked}
+          meal={meals.length}
+          doubleClicked={doubleClicked}
         ></MealList>
       );
     }
@@ -74,20 +83,20 @@ const MealPlan = (props) => {
 
   function mealLabel() {
     const el = [];
-    for (let i = 0; i < props.days; i++) {
-      for (let j = 0; j < props.meals.length; j++) {
+    for (let i = 0; i < days; i++) {
+      for (let j = 0; j < meals.length; j++) {
         if (j === 0) {
           el.push(
             <tr style={{ height: "106px" }} id={"day" + (1 + i)}>
               <td style={{ width: "90px" }}>Day {i + 1}</td>
-              <td style={{ width: "90px" }}>{props.meals[j]}</td>
+              <td style={{ width: "90px" }}>{meals[j]}</td>
             </tr>
           );
         } else {
           el.push(
             <tr style={{ height: "106px" }}>
               <td style={{ width: "90px" }}></td>
-              <td style={{ width: "90px" }}>{props.meals[j]}</td>
+              <td style={{ width: "90px" }}>{meals[j]}</td>
             </tr>
           );
         }
