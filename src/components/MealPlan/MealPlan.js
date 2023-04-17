@@ -59,9 +59,8 @@ const MealPlan = (props) => {
     if (!e.destination) return;
 
     const items = [...plan];
-    const tmp = items[e.destination.index];
-    items[e.destination.index] = items[e.source.index];
-    items[e.source.index] = tmp;
+    const [reorderedItem] = items.splice(e.source.index, 1);
+    items.splice(e.destination.index, 0, reorderedItem);
 
     setPlan(items);
   }
