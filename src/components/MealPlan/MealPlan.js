@@ -135,7 +135,9 @@ const MealPlan = (props) => {
                 <table>
                   <tbody>{mealLabel().map((el) => el)}</tbody>
                 </table>
-                <table style={{position: 'relative !important', zIndex: 9999 }}>
+                <table
+                  style={{ position: "relative !important", zIndex: 9999 }}
+                >
                   <DragDropContext onDragEnd={handleDragEnd}>
                     <Droppable droppableId="mealCards">
                       {(provided) => (

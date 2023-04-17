@@ -67,7 +67,7 @@ const GroceryCard = (props) => {
         <p>Loading...</p>
       ) : (
         <>
-          {fpItem.map((item,idx) => (
+          {fpItem.map((item, idx) => (
             <Grid
               container
               direction="row"
@@ -88,27 +88,35 @@ const GroceryCard = (props) => {
                     <p>{item.item}</p>
                   </AccordionSummary>
                   <AccordionDetails>
-                      <Card className="py-2 px-4 drop-shadow-xl rounded-lg" onClick={()=> {window.open(`https://www.fairprice.com.sg/product/${item.data.slug}`, "_blank")}}>
-                        <p>Found {item.item} in Fairprice:</p>
-                        <div className="flex flex-row">
-                          <img
-                            src={item.data.images[0]}
-                            style={{ width: "100px" }}
-                            className="rounded-md"
-                            loading="lazy"
-                          />
-                          <div className="flex flex-column">
-                            <p className="p-2">{item.data.name}</p>
-                            <a
-                              className="p-2 text-blue-800"
-                              href={`https://www.fairprice.com.sg/search?query=${item.item}`}
-                              target="_blank"
-                            >
-                              Find more
-                            </a>
-                          </div>
+                    <Card
+                      className="py-2 px-4 drop-shadow-xl rounded-lg"
+                      onClick={() => {
+                        window.open(
+                          `https://www.fairprice.com.sg/product/${item.data.slug}`,
+                          "_blank"
+                        );
+                      }}
+                    >
+                      <p>Found {item.item} in Fairprice:</p>
+                      <div className="flex flex-row">
+                        <img
+                          src={item.data.images[0]}
+                          style={{ width: "100px" }}
+                          className="rounded-md"
+                          loading="lazy"
+                        />
+                        <div className="flex flex-column">
+                          <p className="p-2">{item.data.name}</p>
+                          <a
+                            className="p-2 text-blue-800"
+                            href={`https://www.fairprice.com.sg/search?query=${item.item}`}
+                            target="_blank"
+                          >
+                            Find more
+                          </a>
                         </div>
-                      </Card>
+                      </div>
+                    </Card>
                   </AccordionDetails>
                 </Accordion>
               </Grid>
@@ -119,7 +127,7 @@ const GroceryCard = (props) => {
               <Checkbox></Checkbox>
               <Accordion className="bg-transparent shadow-none mb-0 w-[99%]">
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />} 
+                  expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
