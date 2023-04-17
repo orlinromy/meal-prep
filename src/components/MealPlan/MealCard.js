@@ -3,6 +3,7 @@ import React from "react";
 
 const MealCard = (props) => {
   function handleClick(e) {
+    console.log(props.data);
     props.doubleClicked(props.data);
   }
 
@@ -22,11 +23,17 @@ const MealCard = (props) => {
   }
 
   return (
-    <Card
-      variant="outlined"
-      sx={{ height: "104px" }}
+    <Box
+      sx={{
+        height: "104px",
+        boxShadow:
+          "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        borderRadius: "0.5rem",
+        border: "1px",
+        borderColor: "rgba(255, 255, 255, 0.12)",
+        backgroundColor: "white",
+      }}
       onClick={handleClick}
-      className="drop-shadow-lg rounded-lg"
     >
       <Box
         display="flex"
@@ -54,7 +61,7 @@ const MealCard = (props) => {
           />
         </Box>
       </Box>
-    </Card>
+    </Box>
   );
 };
 

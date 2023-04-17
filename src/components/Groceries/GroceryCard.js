@@ -4,7 +4,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Checkbox,
-  Card,
+  Box,
   Grid,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -76,7 +76,7 @@ const GroceryCard = (props) => {
               key={`fp-item-${idx}`}
             >
               <Grid item xs={1}>
-                <Checkbox></Checkbox>
+                <Checkbox />
               </Grid>
               <Grid item xs={11}>
                 <Accordion className="bg-transparent shadow-none mb-0 w-[99%]">
@@ -88,8 +88,16 @@ const GroceryCard = (props) => {
                     <p>{item.item}</p>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Card
-                      className="py-2 px-4 drop-shadow-xl rounded-lg"
+                    <Box
+                      sx={{
+                        py: 2,
+                        px: 4,
+                        boxShadow:
+                          "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+                        borderRadius: "0.5rem",
+                        backgroundColor: "white",
+                        cursor: "pointer",
+                      }}
                       onClick={() => {
                         window.open(
                           `https://www.fairprice.com.sg/product/${item.data.slug}`,
@@ -97,7 +105,9 @@ const GroceryCard = (props) => {
                         );
                       }}
                     >
-                      <p>Found {item.item} in Fairprice:</p>
+                      <p className="text-sm p-2">
+                        Found {item.item} in Fairprice:
+                      </p>
                       <div className="flex flex-row">
                         <img
                           src={item.data.images[0]}
@@ -106,9 +116,9 @@ const GroceryCard = (props) => {
                           loading="lazy"
                         />
                         <div className="flex flex-column">
-                          <p className="p-2">{item.data.name}</p>
+                          <p className="p-2 text-sm">{item.data.name}</p>
                           <a
-                            className="p-2 text-blue-800"
+                            className="p-2 text-blue-800 text-sm"
                             href={`https://www.fairprice.com.sg/search?query=${item.item}`}
                             target="_blank"
                           >
@@ -116,57 +126,77 @@ const GroceryCard = (props) => {
                           </a>
                         </div>
                       </div>
-                    </Card>
+                    </Box>
                   </AccordionDetails>
                 </Accordion>
               </Grid>
             </Grid>
           ))}
           {itemNotFound.map((item, idx) => (
-            <div className="flex flex-row" key={`not-found-${idx}`}>
-              <Checkbox></Checkbox>
-              <Accordion className="bg-transparent shadow-none mb-0 w-[99%]">
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <p>{item}</p>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Card className="py-2 px-4 drop-shadow-xl rounded-lg">
-                    <p>Item is not found in Fairprice</p>
-                    <p>
-                      Try searching in{" "}
-                      <a
-                        href={`https://coldstorage.com.sg/search?q=${item}`}
-                        target="_blank"
-                        className="text-blue-800"
-                      >
-                        Cold Storage
-                      </a>
-                      ,{" "}
-                      <a
-                        href={`https://giant.sg/search?q=${item}`}
-                        target="_blank"
-                        className="text-blue-800"
-                      >
-                        Giant
-                      </a>
-                      , or{" "}
-                      <a
-                        href={`https://shengsiong.com.sg/search/${item}`}
-                        target="_blank"
-                        className="text-blue-800"
-                      >
-                        Sheng Siong
-                      </a>{" "}
-                      instead
-                    </p>
-                  </Card>
-                </AccordionDetails>
-              </Accordion>
-            </div>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justifyContent="flex-start"
+              key={`not-found-${idx}`}
+            >
+              <Grid item xs={1}>
+                <Checkbox />
+              </Grid>
+              <Grid item xs={11}>
+                <Accordion className="bg-transparent shadow-none mb-0 w-[99%]">
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <p>{item}</p>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box
+                      sx={{
+                        py: 2,
+                        px: 4,
+                        boxShadow:
+                          "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+                        borderRadius: "0.5rem",
+                        backgroundColor: "white",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <p>Item is not found in Fairprice</p>
+                      <p>
+                        Try searching in{" "}
+                        <a
+                          href={`https://coldstorage.com.sg/search?q=${item}`}
+                          target="_blank"
+                          className="text-blue-800"
+                        >
+                          Cold Storage
+                        </a>
+                        ,{" "}
+                        <a
+                          href={`https://giant.sg/search?q=${item}`}
+                          target="_blank"
+                          className="text-blue-800"
+                        >
+                          Giant
+                        </a>
+                        , or{" "}
+                        <a
+                          href={`https://shengsiong.com.sg/search/${item}`}
+                          target="_blank"
+                          className="text-blue-800"
+                        >
+                          Sheng Siong
+                        </a>{" "}
+                        instead
+                      </p>
+                    </Box>
+                  </AccordionDetails>
+                </Accordion>
+              </Grid>
+            </Grid>
           ))}
         </>
       )}
