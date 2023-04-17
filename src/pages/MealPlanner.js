@@ -147,7 +147,7 @@ const MealPlanner = (props) => {
 
     if (
       (props.data.meal[0] === 3 && isLoading[0]) ||
-      (props.data.meal[0] === 5 && isLoading.some((loading) => !loading))
+      (props.data.meal[0] === 5 && isLoading.some((loading) => loading))
     ) {
       return <LoadingOverlay />;
     }
