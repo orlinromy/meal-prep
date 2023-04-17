@@ -89,16 +89,10 @@ const MealPlan = (props) => {
           el.push(
             <tr style={{ height: "106px" }} id={"day" + (1 + i)}>
               <td style={{ width: "90px" }}>Day {i + 1}</td>
-              <td style={{ width: "90px" }}>{meals[j]}</td>
             </tr>
           );
         } else {
-          el.push(
-            <tr style={{ height: "106px" }}>
-              <td style={{ width: "90px" }}></td>
-              <td style={{ width: "90px" }}>{meals[j]}</td>
-            </tr>
-          );
+          el.push(<tr style={{ height: "106px" }} />);
         }
       }
     }

@@ -1,9 +1,24 @@
-import { Card, Box } from "@mui/material";
+import { Card, Box, Chip } from "@mui/material";
 import React from "react";
 
 const MealCard = (props) => {
   function handleClick(e) {
     props.doubleClicked(props.data);
+  }
+
+  function mealLabel(i) {
+    switch (i % props.meal) {
+      case 0:
+        return "Breakfast";
+      case 1:
+        return "Lunch";
+      case 2:
+        return "Dinner";
+      case 3:
+        return "Snack";
+      case 4:
+        return "Teatime";
+    }
   }
 
   return (
@@ -31,10 +46,12 @@ const MealCard = (props) => {
           flexDirection="column"
           justifyContent="space-between"
         >
-          <p className="text-md mb-2 ml-2 mt-2">{props.data.recipe.label}</p>
-          <p className="text-xs sm:text-sm ml-2 mb-2">
-            {props.data.recipe.dietLabels.join(", ")}
-          </p>
+          <p className="text-sm mb-2 ml-2 mt-2">{props.data.recipe.label}</p>
+          <Chip
+            label={mealLabel(props.idx)}
+            size="small"
+            className="w-fit ml-1"
+          />
         </Box>
       </Box>
     </Card>

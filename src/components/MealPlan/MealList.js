@@ -27,6 +27,7 @@ const MealList = (props) => {
                 <MealCard
                   data={props.plan[props.meal * props.i + i]}
                   idx={props.i * props.meal + i}
+                  meal={props.meal}
                   doubleClicked={props.doubleClicked}
                 />
               </td>
