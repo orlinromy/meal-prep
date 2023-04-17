@@ -67,18 +67,19 @@ const GroceryCard = (props) => {
         <p>Loading...</p>
       ) : (
         <>
-          {fpItem.map((item) => (
+          {fpItem.map((item,idx) => (
             <Grid
               container
               direction="row"
               alignItems="center"
               justifyContent="flex-start"
+              key={`fp-item-${idx}`}
             >
               <Grid item xs={1}>
                 <Checkbox></Checkbox>
               </Grid>
               <Grid item xs={11}>
-                <Accordion className="bg-transparent shadow-none mb-0 w-full">
+                <Accordion className="bg-transparent shadow-none mb-0 w-[99%]">
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -87,11 +88,7 @@ const GroceryCard = (props) => {
                     <p>{item.item}</p>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <a
-                      href={`https://www.fairprice.com.sg/product/${item.data.slug}`}
-                      target="_blank"
-                    >
-                      <Card className="py-2 px-4 drop-shadow-xl rounded-lg">
+                      <Card className="py-2 px-4 drop-shadow-xl rounded-lg" onClick={()=> {window.open(`https://www.fairprice.com.sg/product/${item.data.slug}`, "_blank")}}>
                         <p>Found {item.item} in Fairprice:</p>
                         <div className="flex flex-row">
                           <img
@@ -112,18 +109,17 @@ const GroceryCard = (props) => {
                           </div>
                         </div>
                       </Card>
-                    </a>
                   </AccordionDetails>
                 </Accordion>
               </Grid>
             </Grid>
           ))}
-          {itemNotFound.map((item) => (
-            <div className="flex flex-row">
+          {itemNotFound.map((item, idx) => (
+            <div className="flex flex-row" key={`not-found-${idx}`}>
               <Checkbox></Checkbox>
-              <Accordion className="bg-transparent shadow-none mb-0 w-[450px]">
+              <Accordion className="bg-transparent shadow-none mb-0 w-[99%]">
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<ExpandMoreIcon />} 
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
