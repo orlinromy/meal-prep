@@ -26,10 +26,12 @@ const MealCard = (props) => {
           className="rounded-lg"
           loading="lazy"
         />
-        <Box display="flex" flexDirection="column">
-          <p className="text-md sm:text-lg mb-2 ml-2 mt-2">
-            {props.data.recipe.label}
-          </p>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+        >
+          <p className="text-md mb-2 ml-2 mt-2">{props.data.recipe.label}</p>
           <p className="text-xs sm:text-sm ml-2 mb-2">
             {props.data.recipe.dietLabels.join(", ")}
           </p>
