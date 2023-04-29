@@ -24,7 +24,6 @@ const GroceryCard = (props) => {
   }
 
   const fetchData = async () => {
-    console.log("fetching groceries data!");
     setIsLoading(true);
     let tempFpGroceries = [];
     let tempItemNotFound = [];

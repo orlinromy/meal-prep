@@ -6,6 +6,7 @@ import RecipeContainer from "../components/Recipe/RecipeContainer";
 import MealPlanNavBar from "../components/MealPlanNavBar/MealPlanNavBar";
 import LoadingOverlay from "../components/MealPlan/LoadingOverlay";
 import { useMediaQuery, SwipeableDrawer } from "@mui/material";
+import Disclaimer from "../components/MealPlan/Disclaimer";
 
 const MealPlanner = (props) => {
   const showRecipe = useMediaQuery("(min-width:640px)");
@@ -16,6 +17,7 @@ const MealPlanner = (props) => {
   const [nextLunchAPI, setNextLunchAPI] = useState({ none: "" });
   const [nextSnackAPI, setNextSnackAPI] = useState({ none: "" });
   const [isLoading, setIsLoading] = useState([true, true]);
+  const [openDisclaimer, setOpenDisclaimer] = useState(true);
   let navigate = useNavigate();
   const fetchControllerRef = useRef(null);
 
@@ -161,10 +163,14 @@ const MealPlanner = (props) => {
 
     return (
       <>
+        <Disclaimer
+          openDisclaimer={openDisclaimer}
+          setOpenDisclaimer={setOpenDisclaimer}
+        />
         {showNavigation && (
           <MealPlanNavBar
-            days={props.data.days}
-            meals={meals[props.data.meal[0]]}
+            days={localStorage.getItem("days") || props.data.days}
+            meals={localStorage.getItem("meals") || meals[props.data.meal[0]]}
           />
         )}
         <MealPlan

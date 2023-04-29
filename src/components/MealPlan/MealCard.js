@@ -3,7 +3,6 @@ import React from "react";
 
 const MealCard = (props) => {
   function handleClick(e) {
-    console.log(props.data);
     props.doubleClicked(props.data);
   }
 
