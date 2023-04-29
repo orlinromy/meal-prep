@@ -8,9 +8,10 @@ Try the app [here](https://prep-a-meal.netlify.app/)!
 
 ### Technical Used
 
-- React
+- React 17
 - react-router-dom
 - react-beautiful-dnd
+- react-error-boundary
 - Material UI
 - Tailwind CSS
 
