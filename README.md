@@ -133,13 +133,9 @@ DISCLAIMER: the icons are not mine, please refer to Reference section for the at
    3. Increase accuracy of the search result after getting data from the API by evaluating the search result and implement additional logic
    4. Add groceries quantity based on the recipe
 
-2. Error pages are not implemented yet \[WIP\]
+2. Add favorite recipe and plan
 
-3. Add favorite recipe and plan
-
-4. Search and change menu functionality
-
-5. Mobile responsiveness \[WIP\]
+3. Search and change menu functionality
 
 ## APIs Used
 
