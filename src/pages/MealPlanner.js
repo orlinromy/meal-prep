@@ -127,27 +127,34 @@ const MealPlanner = (props) => {
   }, [Object.keys(nextSnackAPI)[0]]);
 
   useEffect(() => {
-    if (props.data === undefined) {
+    // fetch data
+    if (props.data === undefined && !localStorage.getItem("plan")) {
       navigate("/create");
     } else {
-      fetchControllerRef.current = new AbortController();
-      for (const mealType of mealTypes[props.data.meal[0]]) {
-        const url = buildURL(props.data, mealType);
+      if (!localStorage.getItem("plan")) {
+        fetchControllerRef.current = new AbortController();
+        for (const mealType of mealTypes[props.data.meal[0]]) {
+          const url = buildURL(props.data, mealType);
 
-        fetchData(url, mealType);
+          fetchData(url, mealType);
+        }
+      } else {
+        navigate("/planner");
       }
     }
-    return () => fetchControllerRef.current.abort();
+    return () =>
+      fetchControllerRef.current && fetchControllerRef.current.abort();
   }, []);
 
   function renderPlan() {
-    if (props.data === undefined) {
+    if (props.data === undefined && !localStorage.getItem("plan")) {
       return;
     }
 
     if (
-      (props.data.meal[0] === 3 && isLoading[0]) ||
-      (props.data.meal[0] === 5 && isLoading.some((loading) => loading))
+      !localStorage.getItem("meals") &&
+      ((props.data.meal[0] === 3 && isLoading[0]) ||
+        (props.data.meal[0] === 5 && isLoading.some((loading) => loading)))
     ) {
       return <LoadingOverlay />;
     }
@@ -164,8 +171,11 @@ const MealPlanner = (props) => {
           breakfastMenu={breakfastMenu}
           lunchDinnerMenu={lunchDinnerMenu}
           snackMenu={snackMenu}
-          meals={meals[props.data.meal[0]]}
-          days={props.data.days}
+          meals={
+            JSON.parse(localStorage.getItem("meals")) ||
+            meals[props.data.meal[0]]
+          }
+          days={localStorage.getItem("days") || props.data.days}
           doubleClicked={setRecipeData}
         />
         {showRecipe ? (
@@ -181,6 +191,7 @@ const MealPlanner = (props) => {
               elevation: 0,
               style: {
                 borderRadius: "20px 20px 0 0",
+                height: "85vh",
               },
             }}
             sx={{ mt: 1 }}

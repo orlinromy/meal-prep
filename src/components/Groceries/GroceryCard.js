@@ -10,14 +10,26 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const GroceryCard = (props) => {
+  const { groceries } = props;
   const [itemNotFound, setItemNotFound] = useState([]);
   const [fpItem, setFpItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  function checkEmptyLocalStorage() {
+    return (
+      !localStorage.getItem("otherGroceries") ||
+      !localStorage.getItem("fpGroceries") ||
+      JSON.parse(!localStorage.getItem("fpGroceries")).length <= 0
+    );
+  }
+
   const fetchData = async () => {
+    console.log("fetching groceries data!");
     setIsLoading(true);
+    let tempFpGroceries = [];
+    let tempItemNotFound = [];
     Promise.all(
-      props.groceries.map((item) => {
+      groceries.map((item) => {
         return new Promise((resolve) => {
           fetch(
             `https://website-api.omni.fairprice.com.sg/api/layout/search/v2?includeTagDetails=true&orderType=DELIVERY&q=${item}`
@@ -28,6 +40,11 @@ const GroceryCard = (props) => {
                   console.error("return code: ", data.code);
                 } else if (Object.keys(data.data).includes("page")) {
                   if (data.data.page.layouts[2].value.collection.count > 0) {
+                    tempFpGroceries.push({
+                      item: item,
+                      data: data.data.page.layouts[2].value.collection
+                        .product[0],
+                    });
                     setFpItem((prevState) => [
                       ...prevState,
                       {
@@ -37,9 +54,11 @@ const GroceryCard = (props) => {
                       },
                     ]);
                     setItemNotFound((prevState) => {
-                      return prevState.filter(
+                      const filterItem = prevState.filter(
                         (data, index) => index !== prevState.indexOf(item)
                       );
+                      tempItemNotFound = [...filterItem];
+                      return filterItem;
                     });
                   }
                 }
@@ -51,12 +70,22 @@ const GroceryCard = (props) => {
       })
     ).then(() => {
       setIsLoading(false);
+      localStorage.setItem("fpGroceries", JSON.stringify(tempFpGroceries));
+      localStorage.setItem("otherGroceries", JSON.stringify(tempItemNotFound));
     });
   };
+
   useEffect(() => {
-    setItemNotFound(props.groceries);
-    fetchData();
-  }, [props.groceries]);
+    setItemNotFound(groceries);
+    // if localStorage is empty, fetch data. otherwise, use data from localStorage
+    if (checkEmptyLocalStorage()) {
+      fetchData();
+    } else {
+      setFpItem(JSON.parse(localStorage.getItem("fpGroceries")));
+      setItemNotFound(JSON.parse(localStorage.getItem("otherGroceries")));
+      setIsLoading(false);
+    }
+  }, [groceries]);
 
   return (
     <div>
@@ -91,7 +120,7 @@ const GroceryCard = (props) => {
                     <Box
                       sx={{
                         py: 2,
-                        px: 4,
+                        px: 2,
                         boxShadow:
                           "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
                         borderRadius: "0.5rem",
@@ -111,7 +140,7 @@ const GroceryCard = (props) => {
                       <div className="flex flex-row">
                         <img
                           src={item.data.images[0]}
-                          style={{ width: "100px" }}
+                          style={{ width: "100px", objectFit: "contain" }}
                           className="rounded-md"
                           loading="lazy"
                         />
