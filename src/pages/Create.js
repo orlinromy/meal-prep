@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { IconCredit } from "../components/IconCredit";
 import Selection from "../components/SelectionCard/Selection";
 import { diet, meal, allergy, health } from "../data/mealOptions";
+import { IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const icons = [
   {
@@ -70,7 +72,7 @@ const Create = (props) => {
   let navigate = useNavigate();
 
   function handleIncrease(e) {
-    if (days < 7) {
+    if (days < 5) {
       setDays(days + 1);
     }
   }
@@ -89,6 +91,10 @@ const Create = (props) => {
       allergy: [...selectedAllergy.map((idx) => allergy[idx].type)],
       health: [...selectedHealth.map((idx) => health[idx].type)],
     });
+
+    // invalidate local storage
+    localStorage.clear();
+
     navigate("/planner");
   }
   useEffect(() => {
@@ -96,6 +102,15 @@ const Create = (props) => {
   }, []);
   return (
     <div className="flex justify-around flex-column">
+      <div style={{ justifySelf: "flex-start" }}>
+        <IconButton
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <ArrowBackIcon />
+        </IconButton>
+      </div>
       <form
         onSubmit={handleSubmit}
         className="text-center mx-[5%] my-[8%] bg-white p-1 sm:p-4 border-solid border-slate-300 rounded-3xl shadow-2xl"
