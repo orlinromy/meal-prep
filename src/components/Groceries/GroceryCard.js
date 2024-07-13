@@ -38,10 +38,12 @@ const GroceryCard = (props) => {
                 if (data.code !== 200) {
                   console.error('return code: ', data.code)
                 } else if (Object.keys(data.data).includes('page')) {
-                  if (data.data.page.layouts[2].value.collection.count > 0) {
+                  if (
+                    data.data.page.layouts?.[2]?.value?.collection?.count > 0
+                  ) {
                     tempFpGroceries.push({
                       item: item,
-                      data: data.data.page.layouts[2].value.collection
+                      data: data.data.page.layouts[2]?.value?.collection
                         .product[0]
                     })
                     setFpItem((prevState) => [
@@ -127,9 +129,8 @@ const GroceryCard = (props) => {
                         cursor: 'pointer'
                       }}
                       onClick={() => {
-                        window.open(
-                          `https://www.fairprice.com.sg/product/${item.data.slug}`,
-                          '_blank'
+                        window.location.assign(
+                          `https://www.fairprice.com.sg/product/${item.data.slug}`
                         )
                       }}
                     >
