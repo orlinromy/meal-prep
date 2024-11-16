@@ -21,7 +21,6 @@ const RecipeContainer = (props) => {
         {`${recipeToShow.recipe.yield} ${
           'serving' + (recipeToShow.recipe.yield > 1 ? 's' : '')
         } | ${Math.floor(recipeToShow.recipe.calories)} calories`}
-        s
       </p>
       <br />
       <a href={recipeToShow.recipe.url} target="_blank" rel="noreferrer">
