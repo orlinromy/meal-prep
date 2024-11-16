@@ -11,7 +11,7 @@ const RecipeContainer = (props) => {
       className={`pt-8 px-4 text-center ${styles.recipeCont} max-h-[91.7vh] overflow-y-auto ${width}`}
     >
       <img
-        className="rounded-md mx-auto object-cover aspect-square w-11/12"
+        className="rounded-md mx-auto object-cover aspect-square w-11/12 max-w-xs"
         alt={recipeToShow.recipe.label}
         src={recipeToShow.recipe.images.REGULAR.url}
         loading="lazy"
