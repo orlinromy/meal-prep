@@ -1,28 +1,38 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import icon from "../assets/food-tray.webp";
+import React from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { Box, IconButton } from '@mui/material'
+import icon from '../assets/food-tray.webp'
 
 const NavBar = () => {
-  let navigate = useNavigate();
-
+  let navigate = useNavigate()
   return (
-    <div className="border-b-2 pt-0 bg-gradient-to-t from-[#fdf8f3] via-white">
-      <nav className="flex items-center ml-7 my-3 gap-9">
-        <img
-          style={{ width: "50px", height: "50px" }}
-          loading="lazy"
-          onClick={() => {
-            navigate("/");
-          }}
+    <Box className="border-b-2 pt-0 bg-gradient-to-t from-[#fdf8f3] via-white">
+      <IconButton
+        size="large"
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        onClick={() => {
+          navigate('/')
+        }}
+        color="inherit"
+        disableRipple={true}
+      >
+        <Box
+          component="img"
+          alt="prep-a-meal icon"
+          className="w-[50px] h-[50px]"
           src={icon}
-          className="cursor-pointer"
-          alt="prep-a-meal"
         />
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/create">Create</NavLink>
-      </nav>
-    </div>
-  );
-};
+      </IconButton>
+      <NavLink to="/" style={{ padding: '2rem 1rem' }}>
+        Home
+      </NavLink>
+      <NavLink to="/create" style={{ padding: '2rem 1rem' }}>
+        Create
+      </NavLink>
+    </Box>
+  )
+}
 
-export default NavBar;
+export default NavBar
