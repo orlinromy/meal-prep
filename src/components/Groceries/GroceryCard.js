@@ -143,6 +143,7 @@ const GroceryCard = (props) => {
                           style={{ width: '100px', objectFit: 'contain' }}
                           className="rounded-md"
                           loading="lazy"
+                          alt={item.item}
                         />
                         <div className="flex flex-column">
                           <p className="p-2 text-sm">{item.data.name}</p>
